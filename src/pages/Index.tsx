@@ -10,6 +10,7 @@ import { FontSelector } from "@/components/FontSelector";
 import { SymbolPicker } from "@/components/SymbolPicker";
 import { TemplateSelector } from "@/components/TemplateSelector";
 import { BioPreview } from "@/components/BioPreview";
+import { AIBioGenerator } from "@/components/AIBioGenerator";
 
 const Index = () => {
   const [bioText, setBioText] = useState('');
@@ -52,6 +53,10 @@ const Index = () => {
     setBioText(template);
   };
 
+  const handleAIBioGenerated = (generatedBio: string) => {
+    setBioText(generatedBio);
+  };
+
   return (
     <div className={`min-h-screen transition-colors duration-300 ${darkMode ? 'dark bg-gray-900' : 'bg-gradient-to-br from-pink-50 via-purple-50 to-indigo-50'}`}>
       <div className="container mx-auto px-4 py-8 max-w-6xl">
@@ -65,7 +70,7 @@ const Index = () => {
             <Sparkles className="h-8 w-8 text-pink-600" />
           </div>
           <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-            Create aesthetic Instagram bios with fancy fonts, symbols, and perfect line breaks. 
+            Create aesthetic Instagram bios with fancy fonts, symbols, AI generation, and perfect line breaks. 
             Stand out with a bio that's uniquely you! ✨
           </p>
           
@@ -84,6 +89,9 @@ const Index = () => {
         <div className="grid md:grid-cols-2 gap-6">
           {/* Left Column - Bio Editor */}
           <div className="space-y-6">
+            {/* AI Bio Generator */}
+            <AIBioGenerator onBioGenerated={handleAIBioGenerated} />
+            
             {/* Template Selector */}
             <TemplateSelector onSelectTemplate={insertTemplate} />
             
@@ -104,7 +112,7 @@ const Index = () => {
                 <Textarea
                   value={bioText}
                   onChange={(e) => setBioText(e.target.value)}
-                  placeholder="Type your bio here... Use line breaks and emojis! ✨"
+                  placeholder="Type your bio here, use AI generation above, or select a template... Use line breaks and emojis! ✨"
                   className="min-h-32 resize-none border-0 focus:ring-2 focus:ring-purple-500"
                   maxLength={characterLimit + 50} // Allow slight overflow for editing
                 />
@@ -154,6 +162,7 @@ const Index = () => {
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-2 text-sm text-gray-600 dark:text-gray-300">
+                <p>• Use AI generation for personalized bio ideas</p>
                 <p>• Use symbols to create visual breaks between sections</p>
                 <p>• Keep it concise but memorable - first impressions matter!</p>
                 <p>• Include a call-to-action or link to your content</p>
