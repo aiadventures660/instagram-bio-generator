@@ -41,14 +41,23 @@ export const SymbolPicker: React.FC<SymbolPickerProps> = ({ onSymbolSelect }) =>
   const [activeCategory, setActiveCategory] = useState('hearts');
 
   return (
-    <Card className="backdrop-blur-sm bg-white/80 dark:bg-gray-800/80 border-0 shadow-lg">
-      <CardHeader className="pb-3">
-        <CardTitle className="flex items-center gap-2">
-          <Sparkles className="h-5 w-5 text-pink-600" />
-          Symbols & Emojis
+    <Card className="shadow-lg border-0 bg-gradient-to-br from-white via-pink-50/20 to-rose-50/20 dark:from-gray-800 dark:via-gray-800/50 dark:to-gray-700/50 backdrop-blur-sm">
+      <CardHeader className="pb-4 border-b border-gray-100 dark:border-gray-700">
+        <CardTitle className="flex items-center gap-3">
+          <div className="p-2 rounded-lg bg-gradient-to-br from-pink-500 to-rose-500">
+            <Sparkles className="h-5 w-5 text-white" />
+          </div>
+          <div>
+            <h3 className="text-xl font-semibold bg-gradient-to-r from-pink-600 to-rose-600 bg-clip-text text-transparent">
+              Symbols & Emojis
+            </h3>
+            <p className="text-sm text-gray-600 dark:text-gray-400 font-normal">
+              Add decorative symbols to your bio
+            </p>
+          </div>
         </CardTitle>
       </CardHeader>
-      <CardContent className="space-y-4">
+      <CardContent className="pt-6 space-y-6">
         {/* Category Tabs */}
         <div className="flex flex-wrap gap-2">
           {Object.entries(symbolCategories).map(([key, category]) => {
@@ -59,13 +68,13 @@ export const SymbolPicker: React.FC<SymbolPickerProps> = ({ onSymbolSelect }) =>
                 variant={activeCategory === key ? "default" : "outline"}
                 size="sm"
                 onClick={() => setActiveCategory(key)}
-                className={`${
+                className={`transition-all duration-200 ${
                   activeCategory === key 
-                    ? "bg-pink-600 text-white" 
-                    : "hover:bg-pink-50 dark:hover:bg-gray-700"
+                    ? "bg-gradient-to-r from-pink-600 to-rose-600 text-white shadow-md" 
+                    : "hover:bg-pink-50 dark:hover:bg-gray-700 border-gray-200 dark:border-gray-600"
                 }`}
               >
-                <IconComponent className="h-4 w-4 mr-1" />
+                <IconComponent className="h-4 w-4 mr-2" />
                 {key.charAt(0).toUpperCase() + key.slice(1)}
               </Button>
             );
@@ -80,7 +89,7 @@ export const SymbolPicker: React.FC<SymbolPickerProps> = ({ onSymbolSelect }) =>
               variant="outline"
               size="sm"
               onClick={() => onSymbolSelect(symbol)}
-              className="aspect-square p-0 text-lg hover:bg-pink-50 dark:hover:bg-gray-700 hover:scale-110 transition-transform"
+              className="aspect-square p-0 text-lg hover:bg-pink-50 dark:hover:bg-gray-700 hover:scale-110 transition-all duration-200 border-gray-200 dark:border-gray-600 hover:border-pink-300 dark:hover:border-pink-500"
             >
               {symbol}
             </Button>
@@ -89,7 +98,7 @@ export const SymbolPicker: React.FC<SymbolPickerProps> = ({ onSymbolSelect }) =>
 
         {/* Popular Emojis Section */}
         <div className="pt-4 border-t border-gray-200 dark:border-gray-700">
-          <Badge variant="secondary" className="mb-3">Popular Emojis</Badge>
+          <Badge variant="secondary" className="mb-4 bg-pink-100 text-pink-700 dark:bg-pink-900 dark:text-pink-300">Popular Emojis</Badge>
           <div className="grid grid-cols-10 gap-2">
             {popularEmojis.map((emoji, index) => (
               <Button
@@ -97,7 +106,7 @@ export const SymbolPicker: React.FC<SymbolPickerProps> = ({ onSymbolSelect }) =>
                 variant="outline"
                 size="sm"
                 onClick={() => onSymbolSelect(emoji)}
-                className="aspect-square p-0 text-lg hover:bg-pink-50 dark:hover:bg-gray-700 hover:scale-110 transition-transform"
+                className="aspect-square p-0 text-lg hover:bg-pink-50 dark:hover:bg-gray-700 hover:scale-110 transition-all duration-200 border-gray-200 dark:border-gray-600 hover:border-pink-300 dark:hover:border-pink-500"
               >
                 {emoji}
               </Button>

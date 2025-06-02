@@ -1,6 +1,5 @@
 
 import React from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Briefcase, Camera, Palette, Coffee, Gamepad2, BookOpen } from 'lucide-react';
@@ -50,41 +49,33 @@ const templates = [
 
 export const TemplateSelector: React.FC<TemplateSelectorProps> = ({ onSelectTemplate }) => {
   return (
-    <Card className="backdrop-blur-sm bg-white/80 dark:bg-gray-800/80 border-0 shadow-lg">
-      <CardHeader className="pb-3">
-        <CardTitle className="flex items-center gap-2">
-          <Palette className="h-5 w-5 text-indigo-600" />
-          Bio Templates
-        </CardTitle>
-      </CardHeader>
-      <CardContent>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-          {templates.map((template, index) => {
-            const IconComponent = template.icon;
-            return (
-              <Button
-                key={index}
-                variant="outline"
-                onClick={() => onSelectTemplate(template.template)}
-                className="h-auto p-4 flex flex-col items-start text-left hover:bg-indigo-50 dark:hover:bg-gray-700 transition-colors group"
-              >
-                <div className="flex items-center justify-between w-full mb-2">
-                  <div className="flex items-center gap-2">
-                    <IconComponent className="h-4 w-4 text-indigo-600" />
-                    <span className="font-medium text-sm">{template.category}</span>
-                  </div>
-                  <Badge variant="secondary" className="text-xs">
-                    {template.badge}
-                  </Badge>
+    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      {templates.map((template, index) => {
+        const IconComponent = template.icon;
+        return (
+          <Button
+            key={index}
+            variant="outline"
+            onClick={() => onSelectTemplate(template.template)}
+            className="h-auto p-4 flex flex-col items-start text-left hover:bg-indigo-50 dark:hover:bg-gray-700 transition-all duration-200 group border-gray-200 dark:border-gray-600 hover:border-indigo-300 dark:hover:border-indigo-500 hover:shadow-md"
+          >
+            <div className="flex items-center justify-between w-full mb-3">
+              <div className="flex items-center gap-3">
+                <div className="p-2 rounded-lg bg-gradient-to-br from-indigo-500 to-blue-500 group-hover:from-indigo-600 group-hover:to-blue-600 transition-all duration-200">
+                  <IconComponent className="h-4 w-4 text-white" />
                 </div>
-                <p className="text-xs text-gray-600 dark:text-gray-300 whitespace-pre-line group-hover:text-gray-800 dark:group-hover:text-gray-100">
-                  {template.template}
-                </p>
-              </Button>
-            );
-          })}
-        </div>
-      </CardContent>
-    </Card>
+                <span className="font-semibold text-sm text-gray-900 dark:text-gray-100">{template.category}</span>
+              </div>
+              <Badge variant="secondary" className="text-xs bg-indigo-100 text-indigo-700 dark:bg-indigo-900 dark:text-indigo-300">
+                {template.badge}
+              </Badge>
+            </div>
+            <p className="text-xs text-gray-600 dark:text-gray-400 whitespace-pre-line group-hover:text-gray-800 dark:group-hover:text-gray-200 leading-relaxed">
+              {template.template}
+            </p>
+          </Button>
+        );
+      })}
+    </div>
   );
 };

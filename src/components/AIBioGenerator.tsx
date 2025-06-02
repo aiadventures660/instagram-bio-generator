@@ -5,8 +5,9 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
-import { Sparkles, Wand2, RefreshCw, Loader2 } from 'lucide-react';
+import { Sparkles, Wand2, RefreshCw, Loader2, CheckCircle } from 'lucide-react';
 import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
 
 interface AIBioGeneratorProps {
   onBioGenerated: (bio: string) => void;
@@ -30,19 +31,9 @@ export const AIBioGenerator: React.FC<AIBioGeneratorProps> = ({ onBioGenerated }
   const [selectedStyle, setSelectedStyle] = useState('');
   const [isGenerating, setIsGenerating] = useState(false);
   const [generatedBios, setGeneratedBios] = useState<string[]>([]);
-  const [apiKey, setApiKey] = useState('');
   const { toast } = useToast();
 
   const generateBio = async () => {
-    if (!apiKey.trim()) {
-      toast({
-        title: "API Key Required",
-        description: "Please enter your Gemini API key to generate AI bios.",
-        variant: "destructive",
-      });
-      return;
-    }
-
     if (!interests.trim() && !profession.trim()) {
       toast({
         title: "More Information Needed",
@@ -55,72 +46,37 @@ export const AIBioGenerator: React.FC<AIBioGeneratorProps> = ({ onBioGenerated }
     setIsGenerating(true);
     
     try {
-      const prompt = `Create 3 Instagram bio variations for someone with these details:
+      console.log('Calling generate-bio function...');
       
-Interests: ${interests || 'Not specified'}
-Profession: ${profession || 'Not specified'}
-Personality: ${personality || 'Not specified'}
-Tone: ${selectedTone || 'Casual'}
-Style: ${selectedStyle || 'With Emojis'}
-
-Requirements:
-- Keep each bio under 150 characters
-- Make them unique and engaging
-- ${selectedStyle.includes('Emojis') ? 'Include relevant emojis' : 'Minimal or no emojis'}
-- ${selectedStyle.includes('Line Breaks') ? 'Use line breaks for visual appeal' : 'Keep compact'}
-- Each bio should feel authentic and personal
-- Return only the 3 bios, separated by "---"
-
-Example format:
-Bio 1 text here
----
-Bio 2 text here  
----
-Bio 3 text here`;
-
-      const response = await fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=' + apiKey, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          contents: [{
-            parts: [{
-              text: prompt
-            }]
-          }],
-          generationConfig: {
-            temperature: 0.8,
-            topK: 40,
-            topP: 0.95,
-            maxOutputTokens: 1024,
-          }
-        }),
+      const { data, error } = await supabase.functions.invoke('generate-bio', {
+        body: {
+          interests: interests.trim(),
+          profession: profession.trim(),
+          personality: personality.trim(),
+          tone: selectedTone,
+          style: selectedStyle
+        }
       });
 
-      if (!response.ok) {
-        throw new Error('Failed to generate bio');
+      if (error) {
+        console.error('Function invocation error:', error);
+        throw new Error(error.message || 'Failed to generate bio');
       }
 
-      const data = await response.json();
-      const generatedText = data.candidates?.[0]?.content?.parts?.[0]?.text;
-      
-      if (generatedText) {
-        const bios = generatedText.split('---').map((bio: string) => bio.trim()).filter((bio: string) => bio.length > 0);
-        setGeneratedBios(bios);
-        
+      if (data?.bios && Array.isArray(data.bios)) {
+        setGeneratedBios(data.bios);
         toast({
           title: "Bios Generated! ✨",
-          description: `Created ${bios.length} unique bio variations for you.`,
+          description: `Created ${data.bios.length} unique bio variations for you.`,
         });
       } else {
-        throw new Error('No content generated');
+        throw new Error('Invalid response format from API');
       }
     } catch (error) {
       console.error('Error generating bio:', error);
       toast({
         title: "Generation Failed",
-        description: "Failed to generate bio. Please check your API key and try again.",
+        description: error instanceof Error ? error.message : "Failed to generate bio. Please try again.",
         variant: "destructive",
       });
     } finally {
@@ -137,99 +93,112 @@ Bio 3 text here`;
   };
 
   return (
-    <Card className="backdrop-blur-sm bg-white/80 dark:bg-gray-800/80 border-0 shadow-lg">
-      <CardHeader className="pb-3">
-        <CardTitle className="flex items-center gap-2">
-          <Wand2 className="h-5 w-5 text-purple-600" />
-          AI Bio Generator
+    <Card className="shadow-lg border-0 bg-gradient-to-br from-white via-purple-50/20 to-pink-50/20 dark:from-gray-800 dark:via-gray-800/50 dark:to-gray-700/50 backdrop-blur-sm">
+      <CardHeader className="pb-4 border-b border-gray-100 dark:border-gray-700">
+        <CardTitle className="flex items-center gap-3">
+          <div className="p-2 rounded-lg bg-gradient-to-br from-purple-500 to-pink-500">
+            <Wand2 className="h-5 w-5 text-white" />
+          </div>
+          <div>
+            <h3 className="text-xl font-semibold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+              AI Bio Generator
+            </h3>
+            <p className="text-sm text-gray-600 dark:text-gray-400 font-normal">
+              Generate personalized Instagram bios with AI
+            </p>
+          </div>
         </CardTitle>
       </CardHeader>
-      <CardContent className="space-y-4">
-        {/* API Key Input */}
-        <div className="space-y-2">
-          <label className="text-sm font-medium">Gemini API Key</label>
-          <Input
-            type="password"
-            value={apiKey}
-            onChange={(e) => setApiKey(e.target.value)}
-            placeholder="Enter your Gemini API key..."
-            className="text-xs"
-          />
-          <p className="text-xs text-gray-500">
-            Get your free API key from{' '}
-            <a href="https://makersuite.google.com/app/apikey" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
-              Google AI Studio
-            </a>
-          </p>
-        </div>
-
-        {/* Input Fields */}
-        <div className="space-y-3">
-          <div>
-            <label className="text-sm font-medium">Interests & Hobbies</label>
-            <Input
-              value={interests}
-              onChange={(e) => setInterests(e.target.value)}
-              placeholder="Photography, travel, coffee, fitness..."
-              className="mt-1"
-            />
+      
+      <CardContent className="pt-6 space-y-6">
+        {/* Input Section */}
+        <div className="grid gap-4">
+          <div className="grid md:grid-cols-2 gap-4">
+            <div className="space-y-2">
+              <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                Interests & Hobbies
+              </label>
+              <Input
+                value={interests}
+                onChange={(e) => setInterests(e.target.value)}
+                placeholder="Photography, travel, coffee..."
+                className="border-gray-200 dark:border-gray-600 focus:border-purple-500 dark:focus:border-purple-400"
+              />
+            </div>
+            
+            <div className="space-y-2">
+              <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                Profession
+              </label>
+              <Input
+                value={profession}
+                onChange={(e) => setProfession(e.target.value)}
+                placeholder="Content creator, designer..."
+                className="border-gray-200 dark:border-gray-600 focus:border-purple-500 dark:focus:border-purple-400"
+              />
+            </div>
           </div>
           
-          <div>
-            <label className="text-sm font-medium">Profession</label>
-            <Input
-              value={profession}
-              onChange={(e) => setProfession(e.target.value)}
-              placeholder="Content creator, designer, entrepreneur..."
-              className="mt-1"
-            />
-          </div>
-          
-          <div>
-            <label className="text-sm font-medium">Personality (Optional)</label>
+          <div className="space-y-2">
+            <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
+              Personality (Optional)
+            </label>
             <Textarea
               value={personality}
               onChange={(e) => setPersonality(e.target.value)}
               placeholder="Describe yourself in a few words..."
-              className="mt-1 min-h-16 resize-none"
+              className="min-h-20 resize-none border-gray-200 dark:border-gray-600 focus:border-purple-500 dark:focus:border-purple-400"
               maxLength={100}
             />
           </div>
         </div>
 
-        {/* Tone Selection */}
-        <div>
-          <label className="text-sm font-medium mb-2 block">Tone</label>
-          <div className="flex flex-wrap gap-2">
-            {toneOptions.map((tone) => (
-              <Button
-                key={tone}
-                variant={selectedTone === tone ? "default" : "outline"}
-                size="sm"
-                onClick={() => setSelectedTone(selectedTone === tone ? '' : tone)}
-                className={selectedTone === tone ? "bg-purple-600 text-white" : ""}
-              >
-                {tone}
-              </Button>
-            ))}
-          </div>
-        </div>
-
         {/* Style Selection */}
-        <div>
-          <label className="text-sm font-medium mb-2 block">Style</label>
-          <div className="flex flex-wrap gap-2">
-            {styleOptions.map((style) => (
-              <Button
-                key={style}
-                variant={selectedStyle === style ? "default" : "outline"}
-                size="sm"
-                onClick={() => setSelectedStyle(selectedStyle === style ? '' : style)}
-                className={selectedStyle === style ? "bg-purple-600 text-white" : ""}
-              >
-                {style}
-              </Button>
-            ))}
+        <div className="grid md:grid-cols-2 gap-6">
+          <div className="space-y-3">
+            <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
+              Tone
+            </label>
+            <div className="grid grid-cols-2 gap-2">
+              {toneOptions.map((tone) => (
+                <Button
+                  key={tone}
+                  variant={selectedTone === tone ? "default" : "outline"}
+                  size="sm"
+                  onClick={() => setSelectedTone(selectedTone === tone ? '' : tone)}
+                  className={`h-9 text-xs transition-all ${
+                    selectedTone === tone 
+                      ? "bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-md" 
+                      : "hover:bg-purple-50 dark:hover:bg-gray-700 border-gray-200 dark:border-gray-600"
+                  }`}
+                >
+                  {tone}
+                </Button>
+              ))}
+            </div>
+          </div>
+
+          <div className="space-y-3">
+            <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
+              Style
+            </label>
+            <div className="grid grid-cols-2 gap-2">
+              {styleOptions.map((style) => (
+                <Button
+                  key={style}
+                  variant={selectedStyle === style ? "default" : "outline"}
+                  size="sm"
+                  onClick={() => setSelectedStyle(selectedStyle === style ? '' : style)}
+                  className={`h-9 text-xs transition-all ${
+                    selectedStyle === style 
+                      ? "bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-md" 
+                      : "hover:bg-purple-50 dark:hover:bg-gray-700 border-gray-200 dark:border-gray-600"
+                  }`}
+                >
+                  {style}
+                </Button>
+              ))}
+            </div>
           </div>
         </div>
 
@@ -237,16 +206,16 @@ Bio 3 text here`;
         <Button 
           onClick={generateBio}
           disabled={isGenerating}
-          className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white"
+          className="w-full h-12 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-medium shadow-lg hover:shadow-xl transition-all duration-200"
         >
           {isGenerating ? (
             <>
-              <Loader2 className="h-4 w-4 mr-2 animate-spin" />
-              Generating...
+              <Loader2 className="h-5 w-5 mr-2 animate-spin" />
+              Generating Amazing Bios...
             </>
           ) : (
             <>
-              <Sparkles className="h-4 w-4 mr-2" />
+              <Sparkles className="h-5 w-5 mr-2" />
               Generate AI Bio
             </>
           )}
@@ -254,43 +223,55 @@ Bio 3 text here`;
 
         {/* Generated Bios */}
         {generatedBios.length > 0 && (
-          <div className="space-y-3 pt-4 border-t border-gray-200 dark:border-gray-700">
-            <div className="flex items-center gap-2">
-              <Sparkles className="h-4 w-4 text-purple-600" />
-              <span className="font-medium text-sm">Generated Bios</span>
-              <Badge variant="secondary" className="text-xs">
-                {generatedBios.length} variations
-              </Badge>
+          <div className="space-y-4 pt-4 border-t border-gray-200 dark:border-gray-700">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <CheckCircle className="h-5 w-5 text-green-500" />
+                <span className="font-medium text-gray-900 dark:text-gray-100">Generated Bios</span>
+                <Badge variant="secondary" className="bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300">
+                  {generatedBios.length} variations
+                </Badge>
+              </div>
+              
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={generateBio}
+                disabled={isGenerating}
+                className="text-purple-600 hover:text-purple-700 hover:bg-purple-50 dark:hover:bg-gray-700"
+              >
+                <RefreshCw className="h-4 w-4 mr-1" />
+                Regenerate
+              </Button>
             </div>
             
-            {generatedBios.map((bio, index) => (
-              <div
-                key={index}
-                className="bg-gray-50 dark:bg-gray-700 rounded-lg p-3 border border-gray-200 dark:border-gray-600"
-              >
-                <p className="text-sm whitespace-pre-line mb-3 leading-relaxed">
-                  {bio}
-                </p>
-                <Button
-                  size="sm"
-                  onClick={() => selectBio(bio)}
-                  className="w-full bg-purple-600 hover:bg-purple-700 text-white"
+            <div className="grid gap-3">
+              {generatedBios.map((bio, index) => (
+                <div
+                  key={index}
+                  className="group relative bg-gradient-to-br from-gray-50 to-white dark:from-gray-700 dark:to-gray-600 rounded-xl p-4 border border-gray-200 dark:border-gray-600 hover:shadow-md transition-all duration-200"
                 >
-                  Use This Bio
-                </Button>
-              </div>
-            ))}
-            
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={generateBio}
-              disabled={isGenerating}
-              className="w-full"
-            >
-              <RefreshCw className="h-4 w-4 mr-2" />
-              Generate New Variations
-            </Button>
+                  <div className="flex items-start gap-3">
+                    <div className="w-8 h-8 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-white text-sm font-semibold">
+                      {index + 1}
+                    </div>
+                    <div className="flex-1">
+                      <p className="text-sm leading-relaxed whitespace-pre-line text-gray-800 dark:text-gray-200 mb-3">
+                        {bio}
+                      </p>
+                      <Button
+                        size="sm"
+                        onClick={() => selectBio(bio)}
+                        className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white shadow-sm"
+                      >
+                        <CheckCircle className="h-4 w-4 mr-2" />
+                        Use This Bio
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         )}
       </CardContent>

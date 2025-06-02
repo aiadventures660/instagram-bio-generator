@@ -80,28 +80,37 @@ export const FontSelector: React.FC<FontSelectorProps> = ({ selectedFont, onFont
   };
 
   return (
-    <Card className="backdrop-blur-sm bg-white/80 dark:bg-gray-800/80 border-0 shadow-lg">
-      <CardHeader className="pb-3">
-        <CardTitle className="flex items-center gap-2">
-          <Type className="h-5 w-5 text-purple-600" />
-          Font Styles
+    <Card className="shadow-lg border-0 bg-gradient-to-br from-white via-blue-50/20 to-indigo-50/20 dark:from-gray-800 dark:via-gray-800/50 dark:to-gray-700/50 backdrop-blur-sm">
+      <CardHeader className="pb-4 border-b border-gray-100 dark:border-gray-700">
+        <CardTitle className="flex items-center gap-3">
+          <div className="p-2 rounded-lg bg-gradient-to-br from-blue-500 to-indigo-500">
+            <Type className="h-5 w-5 text-white" />
+          </div>
+          <div>
+            <h3 className="text-xl font-semibold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
+              Font Styles
+            </h3>
+            <p className="text-sm text-gray-600 dark:text-gray-400 font-normal">
+              Transform your text with unique fonts
+            </p>
+          </div>
         </CardTitle>
       </CardHeader>
-      <CardContent>
-        <div className="grid grid-cols-2 gap-2">
+      <CardContent className="pt-6">
+        <div className="grid grid-cols-2 gap-3">
           {fontStyles.map((style) => (
             <Button
               key={style.key}
               variant={selectedFont === style.key ? "default" : "outline"}
               onClick={() => applyFont(style.key)}
-              className={`h-auto p-3 flex flex-col items-start text-left ${
+              className={`h-auto p-4 flex flex-col items-start text-left transition-all duration-200 ${
                 selectedFont === style.key 
-                  ? "bg-purple-600 text-white" 
-                  : "hover:bg-purple-50 dark:hover:bg-gray-700"
+                  ? "bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-md" 
+                  : "hover:bg-blue-50 dark:hover:bg-gray-700 border-gray-200 dark:border-gray-600 hover:border-blue-300 dark:hover:border-blue-500"
               }`}
             >
-              <span className="font-medium text-xs">{style.name}</span>
-              <span className="text-xs opacity-80 mt-1">{style.preview}</span>
+              <span className="font-semibold text-sm mb-2">{style.name}</span>
+              <span className="text-xs opacity-90 leading-relaxed">{style.preview}</span>
             </Button>
           ))}
         </div>
