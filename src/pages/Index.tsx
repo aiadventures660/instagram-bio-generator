@@ -95,7 +95,7 @@ const Index = () => {
         </div>
 
         <div className="grid lg:grid-cols-2 gap-6 lg:gap-8">
-          {/* Left Column - Bio Editor */}
+          {/* Left Column - AI Generator, Templates, Font Selector */}
           <div className="space-y-6">
             {/* AI Bio Generator */}
             <AIBioGenerator onBioGenerated={handleAIBioGenerated} />
@@ -121,8 +121,22 @@ const Index = () => {
                 <TemplateSelector onSelectTemplate={insertTemplate} />
               </CardContent>
             </Card>
+
+            {/* Font Selector */}
+            <FontSelector 
+              selectedFont={selectedFont} 
+              onFontChange={setSelectedFont}
+              bioText={bioText}
+              setBioText={setBioText}
+            />
+          </div>
+
+          {/* Right Column - Preview, Bio Input, Symbols, Copy Button, Tips */}
+          <div className="space-y-6">
+            {/* Bio Preview */}
+            <BioPreview bioText={bioText} selectedFont={selectedFont} />
             
-            {/* Text Input */}
+            {/* Text Input - Moved from left column */}
             <Card className="shadow-lg border-0 bg-gradient-to-br from-white via-green-50/20 to-emerald-50/20 dark:from-gray-800 dark:via-gray-800/50 dark:to-gray-700/50 backdrop-blur-sm">
               <CardHeader className="pb-4 border-b border-gray-100 dark:border-gray-700">
                 <CardTitle className="flex items-center justify-between">
@@ -158,22 +172,8 @@ const Index = () => {
               </CardContent>
             </Card>
 
-            {/* Font Selector */}
-            <FontSelector 
-              selectedFont={selectedFont} 
-              onFontChange={setSelectedFont}
-              bioText={bioText}
-              setBioText={setBioText}
-            />
-
-            {/* Symbol Picker */}
+            {/* Symbol Picker - Moved from left column */}
             <SymbolPicker onSymbolSelect={insertSymbol} />
-          </div>
-
-          {/* Right Column - Preview & Actions */}
-          <div className="space-y-6">
-            {/* Bio Preview */}
-            <BioPreview bioText={bioText} selectedFont={selectedFont} />
             
             {/* Copy Button */}
             <Card className="shadow-lg border-0 bg-gradient-to-br from-white via-orange-50/20 to-red-50/20 dark:from-gray-800 dark:via-gray-800/50 dark:to-gray-700/50 backdrop-blur-sm">
