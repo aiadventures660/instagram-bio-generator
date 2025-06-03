@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Copy, Sparkles, Heart, Star, Moon, Sun } from 'lucide-react';
 import { Button } from "@/components/ui/button";
@@ -11,6 +10,7 @@ import { SymbolPicker } from "@/components/SymbolPicker";
 import { TemplateSelector } from "@/components/TemplateSelector";
 import { BioPreview } from "@/components/BioPreview";
 import { AIBioGenerator } from "@/components/AIBioGenerator";
+import Footer from "@/components/ui/footer";
 
 const Index = () => {
   const [bioText, setBioText] = useState('');
@@ -131,12 +131,29 @@ const Index = () => {
             />
           </div>
 
-          {/* Right Column - Preview, Bio Input, Symbols, Copy Button, Tips */}
+          {/* Right Column - Preview, Copy Button, Bio Input, Symbols, Tips */}
           <div className="space-y-6">
             {/* Bio Preview */}
             <BioPreview bioText={bioText} selectedFont={selectedFont} />
             
-            {/* Text Input - Moved from left column */}
+            {/* Copy Button - Moved below Instagram Preview */}
+            <Card className="shadow-lg border-0 bg-gradient-to-br from-white via-orange-50/20 to-red-50/20 dark:from-gray-800 dark:via-gray-800/50 dark:to-gray-700/50 backdrop-blur-sm">
+              <CardContent className="pt-6">
+                <Button 
+                  onClick={copyToClipboard}
+                  className="w-full h-14 bg-gradient-to-r from-purple-600 via-pink-600 to-orange-500 hover:from-purple-700 hover:via-pink-700 hover:to-orange-600 text-white font-semibold text-lg shadow-xl hover:shadow-2xl transition-all duration-200"
+                  disabled={!bioText.trim()}
+                >
+                  <Copy className="h-5 w-5 mr-3" />
+                  Copy Bio to Clipboard
+                </Button>
+                <p className="text-sm text-gray-500 dark:text-gray-400 text-center mt-3">
+                  Copy and paste directly into your Instagram bio!
+                </p>
+              </CardContent>
+            </Card>
+            
+            {/* Text Input */}
             <Card className="shadow-lg border-0 bg-gradient-to-br from-white via-green-50/20 to-emerald-50/20 dark:from-gray-800 dark:via-gray-800/50 dark:to-gray-700/50 backdrop-blur-sm">
               <CardHeader className="pb-4 border-b border-gray-100 dark:border-gray-700">
                 <CardTitle className="flex items-center justify-between">
@@ -172,25 +189,8 @@ const Index = () => {
               </CardContent>
             </Card>
 
-            {/* Symbol Picker - Moved from left column */}
+            {/* Symbol Picker */}
             <SymbolPicker onSymbolSelect={insertSymbol} />
-            
-            {/* Copy Button */}
-            <Card className="shadow-lg border-0 bg-gradient-to-br from-white via-orange-50/20 to-red-50/20 dark:from-gray-800 dark:via-gray-800/50 dark:to-gray-700/50 backdrop-blur-sm">
-              <CardContent className="pt-6">
-                <Button 
-                  onClick={copyToClipboard}
-                  className="w-full h-14 bg-gradient-to-r from-purple-600 via-pink-600 to-orange-500 hover:from-purple-700 hover:via-pink-700 hover:to-orange-600 text-white font-semibold text-lg shadow-xl hover:shadow-2xl transition-all duration-200"
-                  disabled={!bioText.trim()}
-                >
-                  <Copy className="h-5 w-5 mr-3" />
-                  Copy Bio to Clipboard
-                </Button>
-                <p className="text-sm text-gray-500 dark:text-gray-400 text-center mt-3">
-                  Copy and paste directly into your Instagram bio!
-                </p>
-              </CardContent>
-            </Card>
 
             {/* Tips Card */}
             <Card className="shadow-lg border-0 bg-gradient-to-br from-white via-yellow-50/20 to-amber-50/20 dark:from-gray-800 dark:via-gray-800/50 dark:to-gray-700/50 backdrop-blur-sm">
@@ -235,6 +235,9 @@ const Index = () => {
           </div>
         </div>
       </div>
+      
+      {/* Footer */}
+      <Footer />
     </div>
   );
 };

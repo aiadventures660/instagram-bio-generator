@@ -50,6 +50,7 @@ export type Database = {
           calories: number
           carbs: number | null
           custom_food_id: string | null
+          daily_entries_count: number | null
           fat: number | null
           food_name: string
           id: string
@@ -64,6 +65,7 @@ export type Database = {
           calories: number
           carbs?: number | null
           custom_food_id?: string | null
+          daily_entries_count?: number | null
           fat?: number | null
           food_name: string
           id?: string
@@ -78,6 +80,7 @@ export type Database = {
           calories?: number
           carbs?: number | null
           custom_food_id?: string | null
+          daily_entries_count?: number | null
           fat?: number | null
           food_name?: string
           id?: string
@@ -97,6 +100,33 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      onboarding_progress: {
+        Row: {
+          completed: boolean
+          created_at: string
+          id: string
+          step: number
+          updated_at: string
+          user_id: string | null
+        }
+        Insert: {
+          completed?: boolean
+          created_at?: string
+          id?: string
+          step?: number
+          updated_at?: string
+          user_id?: string | null
+        }
+        Update: {
+          completed?: boolean
+          created_at?: string
+          id?: string
+          step?: number
+          updated_at?: string
+          user_id?: string | null
+        }
+        Relationships: []
       }
       profiles: {
         Row: {
@@ -125,12 +155,51 @@ export type Database = {
         }
         Relationships: []
       }
+      subscribers: {
+        Row: {
+          created_at: string
+          email: string
+          id: string
+          stripe_customer_id: string | null
+          subscribed: boolean
+          subscription_end: string | null
+          subscription_tier: string | null
+          updated_at: string
+          user_id: string | null
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          id?: string
+          stripe_customer_id?: string | null
+          subscribed?: boolean
+          subscription_end?: string | null
+          subscription_tier?: string | null
+          updated_at?: string
+          user_id?: string | null
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          id?: string
+          stripe_customer_id?: string | null
+          subscribed?: boolean
+          subscription_end?: string | null
+          subscription_tier?: string | null
+          updated_at?: string
+          user_id?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      reset_daily_entry_counts: {
+        Args: Record<PropertyKey, never>
+        Returns: undefined
+      }
     }
     Enums: {
       [_ in never]: never
