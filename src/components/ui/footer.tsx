@@ -15,7 +15,7 @@ const Footer: React.FC = () => {
               <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-white shadow-lg group-hover:scale-105 transition-transform duration-300">
                 <Instagram className="h-6 w-6" />
               </div>
-              <span className="ml-3 text-xl font-bold tracking-tight bg-gradient-to-r from-purple-600 via-pink-600 to-indigo-600 bg-clip-text text-transparent">
+              <span className="ml-3 text-xl font-bold tracking-tight bg-gradient-to-r from-purple-600 via-pink-600 to-indigo-600 bg-clip-text text-transparent py-[10px] my-0">
                 Bio Generator
               </span>
             </div>
