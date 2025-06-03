@@ -1,5 +1,6 @@
+
 import React, { useState, useEffect } from 'react';
-import { Copy, Sparkles, Heart, Star, Moon, Sun } from 'lucide-react';
+import { Copy, Sparkles, Heart, Star, Moon, Sun, Type, Hash, Palette, Lightbulb, Wand2 } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -10,12 +11,14 @@ import { SymbolPicker } from "@/components/SymbolPicker";
 import { TemplateSelector } from "@/components/TemplateSelector";
 import { BioPreview } from "@/components/BioPreview";
 import { AIBioGenerator } from "@/components/AIBioGenerator";
+import { TubelightNavbar } from "@/components/TubelightNavbar";
 import Footer from "@/components/ui/footer";
 
 const Index = () => {
   const [bioText, setBioText] = useState('');
   const [selectedFont, setSelectedFont] = useState('normal');
   const [darkMode, setDarkMode] = useState(false);
+  const [activeSection, setActiveSection] = useState('ai');
   const { toast } = useToast();
 
   const characterLimit = 150;
@@ -28,6 +31,39 @@ const Index = () => {
       document.documentElement.classList.remove('dark');
     }
   }, [darkMode]);
+
+  const navItems = [
+    {
+      id: 'ai',
+      label: 'AI Generator',
+      icon: Wand2,
+      onClick: () => setActiveSection('ai')
+    },
+    {
+      id: 'templates',
+      label: 'Templates',
+      icon: Lightbulb,
+      onClick: () => setActiveSection('templates')
+    },
+    {
+      id: 'fonts',
+      label: 'Fonts',
+      icon: Type,
+      onClick: () => setActiveSection('fonts')
+    },
+    {
+      id: 'symbols',
+      label: 'Symbols',
+      icon: Hash,
+      onClick: () => setActiveSection('symbols')
+    },
+    {
+      id: 'preview',
+      label: 'Preview',
+      icon: Palette,
+      onClick: () => setActiveSection('preview')
+    }
+  ];
 
   const copyToClipboard = async () => {
     try {
@@ -55,6 +91,18 @@ const Index = () => {
 
   const handleAIBioGenerated = (generatedBio: string) => {
     setBioText(generatedBio);
+  };
+
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
+  const handleNavClick = (itemId: string) => {
+    setActiveSection(itemId);
+    scrollToSection(itemId);
   };
 
   return (
@@ -94,47 +142,62 @@ const Index = () => {
           </Button>
         </div>
 
+        {/* Navigation */}
+        <TubelightNavbar 
+          items={navItems} 
+          activeItem={activeSection}
+          onItemClick={handleNavClick}
+        />
+
         <div className="grid lg:grid-cols-2 gap-6 lg:gap-8">
           {/* Left Column - AI Generator, Templates, Font Selector */}
           <div className="space-y-6">
             {/* AI Bio Generator */}
-            <AIBioGenerator onBioGenerated={handleAIBioGenerated} />
+            <div id="ai">
+              <AIBioGenerator onBioGenerated={handleAIBioGenerated} />
+            </div>
             
             {/* Template Selector */}
-            <Card className="shadow-lg border-0 bg-gradient-to-br from-white via-indigo-50/20 to-blue-50/20 dark:from-gray-800 dark:via-gray-800/50 dark:to-gray-700/50 backdrop-blur-sm">
-              <CardHeader className="pb-4 border-b border-gray-100 dark:border-gray-700">
-                <CardTitle className="flex items-center gap-3">
-                  <div className="p-2 rounded-lg bg-gradient-to-br from-indigo-500 to-blue-500">
-                    <Star className="h-5 w-5 text-white" />
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-semibold bg-gradient-to-r from-indigo-600 to-blue-600 bg-clip-text text-transparent">
-                      Bio Templates
-                    </h3>
-                    <p className="text-sm text-gray-600 dark:text-gray-400 font-normal">
-                      Quick start with pre-made templates
-                    </p>
-                  </div>
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="pt-6">
-                <TemplateSelector onSelectTemplate={insertTemplate} />
-              </CardContent>
-            </Card>
+            <div id="templates">
+              <Card className="shadow-lg border-0 bg-gradient-to-br from-white via-indigo-50/20 to-blue-50/20 dark:from-gray-800 dark:via-gray-800/50 dark:to-gray-700/50 backdrop-blur-sm">
+                <CardHeader className="pb-4 border-b border-gray-100 dark:border-gray-700">
+                  <CardTitle className="flex items-center gap-3">
+                    <div className="p-2 rounded-lg bg-gradient-to-br from-indigo-500 to-blue-500">
+                      <Star className="h-5 w-5 text-white" />
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-semibold bg-gradient-to-r from-indigo-600 to-blue-600 bg-clip-text text-transparent">
+                        Bio Templates
+                      </h3>
+                      <p className="text-sm text-gray-600 dark:text-gray-400 font-normal">
+                        Quick start with pre-made templates
+                      </p>
+                    </div>
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="pt-6">
+                  <TemplateSelector onSelectTemplate={insertTemplate} />
+                </CardContent>
+              </Card>
+            </div>
 
             {/* Font Selector */}
-            <FontSelector 
-              selectedFont={selectedFont} 
-              onFontChange={setSelectedFont}
-              bioText={bioText}
-              setBioText={setBioText}
-            />
+            <div id="fonts">
+              <FontSelector 
+                selectedFont={selectedFont} 
+                onFontChange={setSelectedFont}
+                bioText={bioText}
+                setBioText={setBioText}
+              />
+            </div>
           </div>
 
           {/* Right Column - Preview, Copy Button, Bio Input, Symbols, Tips */}
           <div className="space-y-6">
             {/* Bio Preview */}
-            <BioPreview bioText={bioText} selectedFont={selectedFont} />
+            <div id="preview">
+              <BioPreview bioText={bioText} selectedFont={selectedFont} />
+            </div>
             
             {/* Copy Button - Moved below Instagram Preview */}
             <Card className="shadow-lg border-0 bg-gradient-to-br from-white via-orange-50/20 to-red-50/20 dark:from-gray-800 dark:via-gray-800/50 dark:to-gray-700/50 backdrop-blur-sm">
@@ -190,7 +253,9 @@ const Index = () => {
             </Card>
 
             {/* Symbol Picker */}
-            <SymbolPicker onSymbolSelect={insertSymbol} />
+            <div id="symbols">
+              <SymbolPicker onSymbolSelect={insertSymbol} />
+            </div>
 
             {/* Tips Card */}
             <Card className="shadow-lg border-0 bg-gradient-to-br from-white via-yellow-50/20 to-amber-50/20 dark:from-gray-800 dark:via-gray-800/50 dark:to-gray-700/50 backdrop-blur-sm">
