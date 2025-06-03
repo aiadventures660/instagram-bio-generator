@@ -1,20 +1,7 @@
-
 import React from 'react';
-import { 
-  Brain, 
-  Facebook, 
-  Twitter, 
-  Linkedin, 
-  Github, 
-  Instagram,
-  Mail,
-  Phone,
-  MapPin
-} from 'lucide-react';
-
+import { Brain, Facebook, Twitter, Linkedin, Github, Instagram, Mail, Phone, MapPin } from 'lucide-react';
 const Footer: React.FC = () => {
-  return (
-    <footer className="relative bg-gradient-to-br from-white via-gray-50 to-gray-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 pt-32 pb-12 overflow-hidden">
+  return <footer className="relative bg-gradient-to-br from-white via-gray-50 to-gray-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 pt-32 pb-12 overflow-hidden py-[42px]">
       {/* Background patterns */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#f0f0f0_1px,transparent_1px),linear-gradient(to_bottom,#f0f0f0_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,#333_1px,transparent_1px),linear-gradient(to_bottom,#333_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]"></div>
@@ -36,61 +23,48 @@ const Footer: React.FC = () => {
               Create stunning Instagram bios with AI generation, fancy fonts, symbols, and perfect formatting.
             </p>
             <div className="flex space-x-4">
-              {[
-                { icon: Facebook, href: "#" },
-                { icon: Twitter, href: "#" },
-                { icon: Linkedin, href: "#" },
-                { icon: Github, href: "#" },
-                { icon: Instagram, href: "#" }
-              ].map((social, idx) => (
-                <a 
-                  key={idx}
-                  href={social.href} 
-                  className="w-10 h-10 rounded-xl bg-white/90 dark:bg-gray-800/90 border border-black/10 dark:border-gray-600/50 flex items-center justify-center text-gray-600 dark:text-gray-300 hover:bg-gradient-to-br hover:from-purple-500 hover:to-pink-500 hover:text-white hover:border-transparent transition-all duration-300 shadow-sm hover:shadow-lg"
-                >
+              {[{
+              icon: Facebook,
+              href: "#"
+            }, {
+              icon: Twitter,
+              href: "#"
+            }, {
+              icon: Linkedin,
+              href: "#"
+            }, {
+              icon: Github,
+              href: "#"
+            }, {
+              icon: Instagram,
+              href: "#"
+            }].map((social, idx) => <a key={idx} href={social.href} className="w-10 h-10 rounded-xl bg-white/90 dark:bg-gray-800/90 border border-black/10 dark:border-gray-600/50 flex items-center justify-center text-gray-600 dark:text-gray-300 hover:bg-gradient-to-br hover:from-purple-500 hover:to-pink-500 hover:text-white hover:border-transparent transition-all duration-300 shadow-sm hover:shadow-lg">
                   <social.icon size={18} />
-                </a>
-              ))}
+                </a>)}
             </div>
           </div>
 
           <div>
             <h4 className="text-lg font-bold tracking-tight mb-6 bg-gradient-to-r from-purple-600 via-pink-600 to-indigo-600 bg-clip-text text-transparent">Features</h4>
             <ul className="space-y-4">
-              {[
-                "AI Bio Generation",
-                "Fancy Font Styles",
-                "Symbol Library",
-                "Template Collection",
-                "Live Preview"
-              ].map((feature, idx) => (
-                <li key={idx}>
+              {["AI Bio Generation", "Fancy Font Styles", "Symbol Library", "Template Collection", "Live Preview"].map((feature, idx) => <li key={idx}>
                   <a href="#" className="text-gray-600 dark:text-gray-300 hover:text-black dark:hover:text-white transition-colors duration-300 flex items-center group">
                     <span className="w-1.5 h-1.5 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 mr-2 opacity-0 group-hover:opacity-100 transition-opacity"></span>
                     {feature}
                   </a>
-                </li>
-              ))}
+                </li>)}
             </ul>
           </div>
 
           <div>
             <h4 className="text-lg font-bold tracking-tight mb-6 bg-gradient-to-r from-purple-600 via-pink-600 to-indigo-600 bg-clip-text text-transparent">Resources</h4>
             <ul className="space-y-4">
-              {[
-                "Bio Templates",
-                "Style Guide",
-                "Tips & Tricks",
-                "Examples",
-                "FAQ"
-              ].map((item, idx) => (
-                <li key={idx}>
+              {["Bio Templates", "Style Guide", "Tips & Tricks", "Examples", "FAQ"].map((item, idx) => <li key={idx}>
                   <a href="#" className="text-gray-600 dark:text-gray-300 hover:text-black dark:hover:text-white transition-colors duration-300 flex items-center group">
                     <span className="w-1.5 h-1.5 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 mr-2 opacity-0 group-hover:opacity-100 transition-opacity"></span>
                     {item}
                   </a>
-                </li>
-              ))}
+                </li>)}
             </ul>
           </div>
 
@@ -123,8 +97,6 @@ const Footer: React.FC = () => {
           </p>
         </div>
       </div>
-    </footer>
-  );
+    </footer>;
 };
-
 export default Footer;
