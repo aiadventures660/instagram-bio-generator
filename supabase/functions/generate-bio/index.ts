@@ -44,9 +44,9 @@ Bio 2 text here
 ---
 Bio 3 text here`;
 
-    console.log('Sending request to Gemini API...');
+    console.log('Sending request to Gemini API with model: gemini-1.5-flash');
 
-    const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${apiKey}`, {
+    const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
