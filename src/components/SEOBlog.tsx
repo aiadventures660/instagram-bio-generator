@@ -2,7 +2,7 @@
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Sparkles, TrendingUp, Users, Zap, Star, Heart, Search, Target } from 'lucide-react';
+import { Sparkles, TrendingUp, Users, Zap, Star, Heart, Search, Target, Type, Copy, Smile } from 'lucide-react';
 
 const SEOBlog: React.FC = () => {
   const keywordSections = [
@@ -11,68 +11,118 @@ const SEOBlog: React.FC = () => {
       icon: Sparkles,
       gradient: "from-purple-500 to-pink-500",
       content: [
-        "Transform your Instagram profile with our free AI-powered bio generator. Create engaging, unique, and professional Instagram bios that capture your personality and attract followers.",
-        "Our Instagram bio maker uses advanced artificial intelligence to generate creative bio ideas tailored to your interests, profession, and style preferences."
+        "Transform your Instagram profile with our free Instagram bio generator. Create engaging, unique, and professional Instagram bios that capture your personality and attract followers. Our Instagram bio generator free tool uses advanced artificial intelligence to generate creative bio ideas tailored to your interests, profession, and style preferences.",
+        "Whether you're looking for an Instagram bio generator for girls, Instagram bio generator for boy, or Instagram professional bio generator, our AI-powered tool creates personalized content that stands out from the crowd."
       ],
-      keywords: ["free instagram bio generator", "ai bio generator", "instagram bio maker", "bio creator"]
+      keywords: ["instagram bio generator", "free instagram bio generator", "instagram bio generator free", "instagram professional bio generator"]
     },
     {
-      title: "AI-Powered Bio Creation for Maximum Engagement",
-      icon: Zap,
+      title: "Instagram Bio Generator Font & Stylish Text Options",
+      icon: Type,
       gradient: "from-blue-500 to-cyan-500",
       content: [
-        "Leverage cutting-edge AI technology to craft Instagram bios that stand out. Our intelligent bio generator analyzes trending patterns and user preferences to create compelling profile descriptions.",
-        "Generate multiple bio variations instantly and choose the perfect one that represents your brand, personality, or business goals."
+        "Enhance your profile with our Instagram bio generator font features. Access stylish font generator for instagram bio options, fancy text generator bio for instagram, and cool text generator for instagram bio styles. Our Instagram font generator online copy and paste bio tool makes it easy to apply beautiful typography.",
+        "From Instagram bio generator font stylish options to fancy text generator for instagram bio designs, create eye-catching profiles with our font generator instagram bio capabilities. Make your bio stand out with our stylish instagram bio generator font collection."
       ],
-      keywords: ["ai instagram bio", "smart bio generator", "automated bio creation", "intelligent profile maker"]
+      keywords: ["instagram bio generator font", "font generator instagram bio", "stylish font generator for instagram bio", "instagram font generator"]
     },
     {
-      title: "Professional Instagram Bio Templates & Ideas",
-      icon: Target,
+      title: "Instagram Bio Generator Copy and Paste with Emojis",
+      icon: Copy,
       gradient: "from-green-500 to-emerald-500",
       content: [
-        "Access hundreds of professional Instagram bio templates designed for influencers, businesses, creators, and personal brands. Find the perfect bio format for your niche.",
-        "From minimalist designs to emoji-rich creative bios, discover templates that convert visitors into followers and boost your Instagram presence."
+        "Get instant results with our Instagram bio generator copy and paste functionality. Our Instagram bio generator with emoji features and Instagram bio generator with emoji copy and paste options make it simple to create engaging profiles. Add personality with our comprehensive emoji collection.",
+        "Our Instagram bio generator aesthetic tool combines beautiful fonts with perfect emoji placement, creating Instagram bio generator with emoji designs that capture attention and express your unique style."
       ],
-      keywords: ["instagram bio templates", "professional bio ideas", "business instagram bio", "influencer bio generator"]
+      keywords: ["instagram bio generator copy and paste", "instagram bio generator with emoji", "instagram bio generator with emoji copy and paste", "instagram bio generator aesthetic"]
     },
     {
-      title: "Stylish Fonts & Symbols for Unique Instagram Profiles",
-      icon: Star,
+      title: "AI-Powered Instagram Bio Generator for Maximum Engagement",
+      icon: Zap,
       gradient: "from-orange-500 to-red-500",
       content: [
-        "Make your Instagram bio stand out with stylish fonts, special characters, and eye-catching symbols. Our font generator offers dozens of aesthetic text styles.",
-        "Copy and paste unique fonts directly into your Instagram bio. Add line breaks, emojis, and special symbols to create visually appealing profile descriptions."
+        "Leverage cutting-edge technology with our Instagram bio generator ai features. Our free ai bio generator for instagram analyzes trending patterns and user preferences to create compelling profile descriptions. The Instagram bio generator ai system generates multiple bio variations instantly.",
+        "Our AI bio generator Instagram tool understands context, personality, and brand goals to deliver personalized results. Experience the power of artificial intelligence with our advanced Instagram bio generator ai technology."
       ],
-      keywords: ["instagram fonts", "aesthetic bio fonts", "instagram symbols", "stylish text generator"]
+      keywords: ["instagram bio generator ai", "ai bio generator instagram", "free ai bio generator for instagram", "instagram ai bio generator"]
     },
     {
-      title: "Boost Your Instagram Growth with Optimized Bios",
-      icon: TrendingUp,
+      title: "Instagram Bio Generator Symbol & Special Characters",
+      icon: Star,
       gradient: "from-pink-500 to-rose-500",
       content: [
-        "Optimize your Instagram bio for maximum discoverability and engagement. Learn how to write bios that convert, attract your target audience, and grow your follower count.",
-        "Our bio optimization tips help you create compelling calls-to-action, use relevant keywords, and structure your bio for better Instagram algorithm performance."
+        "Make your profile unique with our Instagram bio generator symbol collection. Access hundreds of special characters, decorative symbols, and Instagram bio generator symbol options to create visually appealing profile descriptions.",
+        "Our symbol library includes arrows, hearts, stars, and custom Instagram bio generator symbol designs that help organize your bio content and create visual breaks between different sections of your profile."
       ],
-      keywords: ["instagram growth", "bio optimization", "instagram marketing", "profile optimization"]
+      keywords: ["instagram bio generator symbol", "instagram symbols", "bio symbols", "instagram special characters"]
     },
     {
-      title: "Creative Bio Ideas for Every Instagram User",
-      icon: Heart,
+      title: "Specialized Instagram Bio Generators for Every User",
+      icon: Target,
       gradient: "from-violet-500 to-purple-500",
       content: [
-        "Whether you're a content creator, business owner, artist, or student, find creative bio ideas that perfectly represent your unique identity and goals.",
-        "Explore trending bio formats, popular phrases, and creative writing techniques that make Instagram profiles memorable and engaging."
+        "Discover specialized tools including cute instagram bio generator options, Instagram business bio generator features, and Instagram stylish bio generator templates. Our platform offers Instagram space bio generator for creative layouts and center instagram bio generator for perfect alignment.",
+        "Whether you need an Instagram business bio generator for professional profiles or a cute instagram bio generator for personal accounts, our comprehensive toolkit has everything you need to create the perfect Instagram presence."
       ],
-      keywords: ["creative instagram bios", "unique bio ideas", "personal branding", "instagram profile tips"]
+      keywords: ["cute instagram bio generator", "instagram business bio generator", "instagram stylish bio generator", "center instagram bio generator"]
+    },
+    {
+      title: "Popular Instagram Bio Generator Tools & Alternatives",
+      icon: Users,
+      gradient: "from-indigo-500 to-blue-500",
+      content: [
+        "Compare our platform with popular tools like ahrefs instagram bio generator and mention com instagram bio generator. Learn how to create instagram bio generator content that outperforms competitors and attracts more followers.",
+        "Our create instagram bio generator features offer more customization options than traditional ahrefs instagram bio generator or mention com instagram bio generator tools, providing unlimited creative possibilities for your Instagram profile."
+      ],
+      keywords: ["ahrefs instagram bio generator", "mention com instagram bio generator", "create instagram bio generator", "bio generator alternatives"]
     }
   ];
 
   const trendingKeywords = [
-    "Free Instagram Bio Generator", "AI Bio Creator", "Instagram Bio Maker", "Bio Generator Online",
-    "Instagram Profile Generator", "Social Media Bio Tool", "Aesthetic Bio Generator", "Professional Instagram Bio",
-    "Creative Bio Ideas", "Instagram Bio Templates", "Bio Writing Tool", "Instant Bio Creator",
-    "Stylish Instagram Fonts", "Bio Optimization Tool", "Instagram Marketing Tool", "Personal Branding Bio"
+    "Instagram Bio Generator", "Instagram Bio Generator Font", "Instagram Bio Generator AI", "Instagram Bio Generator Copy and Paste",
+    "Instagram Bio Generator with Emoji", "Instagram Bio Generator Free", "Font Generator Instagram Bio", "Instagram Font Generator",
+    "Stylish Font Generator for Instagram Bio", "Free AI Bio Generator for Instagram", "Instagram Bio Generator Aesthetic", 
+    "Instagram Bio Generator for Girls", "Instagram Bio Generator for Boy", "Instagram Business Bio Generator",
+    "Fancy Text Generator Bio for Instagram", "Cool Text Generator for Instagram Bio", "Instagram Bio Generator Symbol",
+    "Cute Instagram Bio Generator", "Instagram Professional Bio Generator", "Instagram Stylish Bio Generator",
+    "Center Instagram Bio Generator", "Instagram Space Bio Generator", "Bio Generator Instagram Online",
+    "Instagram Font Generator Online Copy and Paste Bio", "Ahrefs Instagram Bio Generator", "Mention Com Instagram Bio Generator"
+  ];
+
+  const popularSearches = [
+    {
+      category: "Font & Style",
+      searches: [
+        "instagram bio generator font stylish",
+        "font generator bio instagram", 
+        "fancy text generator for instagram bio",
+        "instagram font generator online copy and paste bio"
+      ]
+    },
+    {
+      category: "AI & Free Tools",
+      searches: [
+        "free ai bio generator for instagram",
+        "instagram bio generator free tool",
+        "instagram bio generator ai powered"
+      ]
+    },
+    {
+      category: "Special Features",
+      searches: [
+        "instagram bio generator with emoji copy and paste",
+        "instagram bio generator aesthetic design",
+        "instagram bio generator symbol collection"
+      ]
+    },
+    {
+      category: "User Types",
+      searches: [
+        "instagram bio generator for girls cute",
+        "instagram business bio generator professional",
+        "instagram bio generator name customization"
+      ]
+    }
   ];
 
   return (
@@ -84,13 +134,13 @@ const SEOBlog: React.FC = () => {
             <div className="p-3 rounded-xl bg-gradient-to-br from-purple-500 to-pink-500">
               <Search className="h-8 w-8 text-white" />
             </div>
-            <h2 className="text-4xl lg:text-5xl font-bold bg-gradient-to-r from-purple-600 via-pink-600 to-indigo-600 bg-clip-text text-transparent">
+            <h1 className="text-4xl lg:text-5xl font-bold bg-gradient-to-r from-purple-600 via-pink-600 to-indigo-600 bg-clip-text text-transparent">
               Ultimate Instagram Bio Generator Guide
-            </h2>
+            </h1>
           </div>
           <p className="text-xl text-gray-600 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed">
-            Discover everything you need to know about creating perfect Instagram bios with our free AI-powered tool. 
-            From creative ideas to professional templates, we've got you covered.
+            Discover the best Instagram bio generator tools with AI, fonts, emojis, and copy-paste features. 
+            Create stunning Instagram bios that boost engagement and followers with our comprehensive guide.
           </p>
         </div>
 
@@ -100,7 +150,7 @@ const SEOBlog: React.FC = () => {
             <CardTitle className="flex items-center justify-center gap-3">
               <TrendingUp className="h-6 w-6 text-blue-600" />
               <span className="text-2xl bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
-                Trending Instagram Bio Keywords
+                Trending Instagram Bio Generator Keywords
               </span>
             </CardTitle>
           </CardHeader>
@@ -119,6 +169,40 @@ const SEOBlog: React.FC = () => {
           </CardContent>
         </Card>
 
+        {/* Popular Search Categories */}
+        <Card className="mb-12 shadow-lg border-0 bg-gradient-to-br from-white via-green-50/20 to-emerald-50/20 dark:from-gray-800 dark:via-gray-800/50 dark:to-gray-700/50 backdrop-blur-sm">
+          <CardHeader className="text-center">
+            <CardTitle className="flex items-center justify-center gap-3">
+              <Heart className="h-6 w-6 text-green-600" />
+              <span className="text-2xl bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">
+                Popular Instagram Bio Generator Searches
+              </span>
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {popularSearches.map((category, index) => (
+                <div key={index} className="space-y-3">
+                  <h3 className="font-semibold text-gray-800 dark:text-gray-200 border-b border-gray-200 dark:border-gray-600 pb-2">
+                    {category.category}
+                  </h3>
+                  <div className="space-y-2">
+                    {category.searches.map((search, searchIndex) => (
+                      <Badge 
+                        key={searchIndex}
+                        variant="outline"
+                        className="block text-xs text-gray-600 dark:text-gray-400 border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors cursor-pointer"
+                      >
+                        {search}
+                      </Badge>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
+
         {/* SEO Content Sections */}
         <div className="grid lg:grid-cols-2 gap-8">
           {keywordSections.map((section, index) => (
@@ -132,9 +216,9 @@ const SEOBlog: React.FC = () => {
                     <section.icon className="h-6 w-6 text-white" />
                   </div>
                   <div className="flex-1">
-                    <h3 className={`text-xl font-semibold bg-gradient-to-r ${section.gradient} bg-clip-text text-transparent mb-2`}>
+                    <h2 className={`text-xl font-semibold bg-gradient-to-r ${section.gradient} bg-clip-text text-transparent mb-2`}>
                       {section.title}
-                    </h3>
+                    </h2>
                     <div className="flex flex-wrap gap-2">
                       {section.keywords.map((keyword, kidx) => (
                         <Badge 
@@ -166,35 +250,35 @@ const SEOBlog: React.FC = () => {
 
         {/* SEO Features Grid */}
         <div className="mt-16">
-          <h3 className="text-3xl font-bold text-center mb-12 bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+          <h2 className="text-3xl font-bold text-center mb-12 bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
             Why Choose Our Instagram Bio Generator?
-          </h3>
+          </h2>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
               {
                 icon: Zap,
-                title: "Instant Generation",
-                description: "Create perfect Instagram bios in seconds with our AI-powered generator",
-                keywords: "instant bio generator, quick bio maker"
+                title: "AI-Powered Generation",
+                description: "Advanced Instagram bio generator AI creates perfect bios in seconds with smart algorithms",
+                keywords: "instagram bio generator ai, ai bio generator"
               },
               {
-                icon: Star,
-                title: "Professional Quality",
-                description: "Get high-quality, engaging bios that boost your Instagram presence",
-                keywords: "professional instagram bios, quality bio generator"
+                icon: Type,
+                title: "Font & Style Options",
+                description: "Stylish font generator for Instagram bio with fancy text and cool design options",
+                keywords: "instagram bio generator font, font generator instagram bio"
               },
               {
-                icon: Users,
-                title: "For Everyone",
-                description: "Perfect for influencers, businesses, creators, and personal accounts",
-                keywords: "universal bio generator, instagram bio for all"
+                icon: Smile,
+                title: "Emoji Integration",
+                description: "Instagram bio generator with emoji copy and paste features for expressive profiles",
+                keywords: "instagram bio generator with emoji, emoji copy paste"
               },
               {
                 icon: Heart,
-                title: "100% Free",
-                description: "No hidden costs, no subscriptions - completely free Instagram bio tool",
-                keywords: "free bio generator, no cost instagram tool"
+                title: "100% Free Tool",
+                description: "Complete Instagram bio generator free access with no hidden costs or subscriptions",
+                keywords: "instagram bio generator free, free bio generator"
               }
             ].map((feature, index) => (
               <Card 
@@ -204,9 +288,9 @@ const SEOBlog: React.FC = () => {
                 <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center">
                   <feature.icon className="h-8 w-8 text-white" />
                 </div>
-                <h4 className="text-lg font-semibold mb-3 text-gray-900 dark:text-gray-100">
+                <h3 className="text-lg font-semibold mb-3 text-gray-900 dark:text-gray-100">
                   {feature.title}
-                </h4>
+                </h3>
                 <p className="text-sm text-gray-600 dark:text-gray-400 mb-3 leading-relaxed">
                   {feature.description}
                 </p>
@@ -222,24 +306,24 @@ const SEOBlog: React.FC = () => {
         <div className="mt-16 text-center">
           <Card className="inline-block shadow-2xl border-0 bg-gradient-to-br from-purple-600 via-pink-600 to-indigo-600 text-white">
             <CardContent className="p-8">
-              <h3 className="text-2xl font-bold mb-4">
+              <h2 className="text-2xl font-bold mb-4">
                 Ready to Create Your Perfect Instagram Bio?
-              </h3>
+              </h2>
               <p className="text-lg mb-6 text-purple-100">
-                Join thousands of users who've boosted their Instagram presence with our free AI bio generator
+                Join thousands who've boosted their Instagram presence with our free Instagram bio generator AI tool
               </p>
               <div className="flex flex-wrap justify-center gap-2 text-sm">
                 <Badge variant="secondary" className="bg-white/20 text-white border-white/30">
                   #InstagramBioGenerator
                 </Badge>
                 <Badge variant="secondary" className="bg-white/20 text-white border-white/30">
-                  #AIBioMaker
+                  #InstagramBioGeneratorFont
                 </Badge>
                 <Badge variant="secondary" className="bg-white/20 text-white border-white/30">
-                  #FreeInstagramTool
+                  #InstagramBioGeneratorAI
                 </Badge>
                 <Badge variant="secondary" className="bg-white/20 text-white border-white/30">
-                  #SocialMediaOptimization
+                  #FreeInstagramBioGenerator
                 </Badge>
               </div>
             </CardContent>
