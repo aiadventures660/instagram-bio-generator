@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Copy, Sparkles, Heart, Star, Moon, Sun, Type, Hash, Palette, Lightbulb, Wand2 } from 'lucide-react';
 import { Button } from "@/components/ui/button";
@@ -12,6 +11,7 @@ import { TemplateSelector } from "@/components/TemplateSelector";
 import { BioPreview } from "@/components/BioPreview";
 import { AIBioGenerator } from "@/components/AIBioGenerator";
 import { TubelightNavbar } from "@/components/TubelightNavbar";
+import SEOBlog from "@/components/SEOBlog";
 import Footer from "@/components/ui/footer";
 
 const Index = () => {
@@ -300,6 +300,9 @@ const Index = () => {
           </div>
         </div>
       </div>
+      
+      {/* SEO Blog Section */}
+      <SEOBlog />
       
       {/* Footer */}
       <Footer />

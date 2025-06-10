@@ -9,6 +9,42 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
+      batch_extractions: {
+        Row: {
+          completed_links: number
+          created_at: string
+          failed_links: number
+          id: string
+          name: string
+          status: string
+          total_links: number
+          updated_at: string
+          user_id: string | null
+        }
+        Insert: {
+          completed_links?: number
+          created_at?: string
+          failed_links?: number
+          id?: string
+          name: string
+          status?: string
+          total_links?: number
+          updated_at?: string
+          user_id?: string | null
+        }
+        Update: {
+          completed_links?: number
+          created_at?: string
+          failed_links?: number
+          id?: string
+          name?: string
+          status?: string
+          total_links?: number
+          updated_at?: string
+          user_id?: string | null
+        }
+        Relationships: []
+      }
       custom_foods: {
         Row: {
           calories_per_100g: number
@@ -190,6 +226,62 @@ export type Database = {
           user_id?: string | null
         }
         Relationships: []
+      }
+      video_extractions: {
+        Row: {
+          batch_id: string | null
+          created_at: string
+          direct_video_url: string | null
+          duration: number | null
+          error_message: string | null
+          file_size: number | null
+          id: string
+          status: string
+          terabox_url: string
+          thumbnail_url: string | null
+          title: string | null
+          updated_at: string
+          user_id: string | null
+        }
+        Insert: {
+          batch_id?: string | null
+          created_at?: string
+          direct_video_url?: string | null
+          duration?: number | null
+          error_message?: string | null
+          file_size?: number | null
+          id?: string
+          status?: string
+          terabox_url: string
+          thumbnail_url?: string | null
+          title?: string | null
+          updated_at?: string
+          user_id?: string | null
+        }
+        Update: {
+          batch_id?: string | null
+          created_at?: string
+          direct_video_url?: string | null
+          duration?: number | null
+          error_message?: string | null
+          file_size?: number | null
+          id?: string
+          status?: string
+          terabox_url?: string
+          thumbnail_url?: string | null
+          title?: string | null
+          updated_at?: string
+          user_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "video_extractions_batch_id_fkey"
+            columns: ["batch_id"]
+            isOneToOne: false
+            referencedRelation: "batch_extractions"
+            referencedColumns: ["id"]
+          },
+        ]
       }
     }
     Views: {
