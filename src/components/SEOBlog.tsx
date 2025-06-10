@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Sparkles, TrendingUp, Users, Zap, Star, Heart, Type, Copy, Target } from 'lucide-react';
 import SEOHeader from './seo/SEOHeader';
@@ -7,6 +6,7 @@ import PopularSearches from './seo/PopularSearches';
 import KeywordSection from './seo/KeywordSection';
 import SEOFeatures from './seo/SEOFeatures';
 import SEOCallToAction from './seo/SEOCallToAction';
+import RelatedBioFeatures from './seo/RelatedBioFeatures';
 
 const SEOBlog: React.FC = () => {
   const keywordSections = [
@@ -69,16 +69,6 @@ const SEOBlog: React.FC = () => {
         "Whether you need an Instagram business bio generator for professional profiles or a cute instagram bio generator for personal accounts, our comprehensive toolkit has everything you need to create the perfect Instagram presence."
       ],
       keywords: ["cute instagram bio generator", "instagram business bio generator", "instagram stylish bio generator", "center instagram bio generator"]
-    },
-    {
-      title: "Popular Instagram Bio Generator Tools & Alternatives",
-      icon: Users,
-      gradient: "from-indigo-500 to-blue-500",
-      content: [
-        "Compare our platform with popular tools like ahrefs instagram bio generator and mention com instagram bio generator. Learn how to create instagram bio generator content that outperforms competitors and attracts more followers.",
-        "Our create instagram bio generator features offer more customization options than traditional ahrefs instagram bio generator or mention com instagram bio generator tools, providing unlimited creative possibilities for your Instagram profile."
-      ],
-      keywords: ["ahrefs instagram bio generator", "mention com instagram bio generator", "create instagram bio generator", "bio generator alternatives"]
     }
   ];
 
@@ -91,7 +81,7 @@ const SEOBlog: React.FC = () => {
 
         {/* SEO Content Sections */}
         <div className="grid lg:grid-cols-2 gap-8">
-          {keywordSections.map((section, index) => (
+          {keywordSections.slice(0, 5).map((section, index) => (
             <KeywordSection
               key={index}
               title={section.title}
@@ -101,6 +91,32 @@ const SEOBlog: React.FC = () => {
               keywords={section.keywords}
             />
           ))}
+          
+          {/* Last section with additional card */}
+          <KeywordSection
+            title={keywordSections[5].title}
+            icon={keywordSections[5].icon}
+            gradient={keywordSections[5].gradient}
+            content={keywordSections[5].content}
+            keywords={keywordSections[5].keywords}
+          />
+          
+          {/* New related features card */}
+          <RelatedBioFeatures />
+        </div>
+
+        {/* Popular Instagram Bio Generator Tools section */}
+        <div className="mt-12">
+          <KeywordSection
+            title="Popular Instagram Bio Generator Tools & Alternatives"
+            icon={Users}
+            gradient="from-indigo-500 to-blue-500"
+            content={[
+              "Compare our platform with popular tools like ahrefs instagram bio generator and mention com instagram bio generator. Learn how to create instagram bio generator content that outperforms competitors and attracts more followers.",
+              "Our create instagram bio generator features offer more customization options than traditional ahrefs instagram bio generator or mention com instagram bio generator tools, providing unlimited creative possibilities for your Instagram profile."
+            ]}
+            keywords={["ahrefs instagram bio generator", "mention com instagram bio generator", "create instagram bio generator", "bio generator alternatives"]}
+          />
         </div>
 
         <SEOFeatures />
