@@ -1,8 +1,12 @@
 
 import React from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Sparkles, TrendingUp, Users, Zap, Star, Heart, Search, Target, Type, Copy, Smile } from 'lucide-react';
+import { Sparkles, TrendingUp, Users, Zap, Star, Heart, Type, Copy, Target } from 'lucide-react';
+import SEOHeader from './seo/SEOHeader';
+import TrendingKeywords from './seo/TrendingKeywords';
+import PopularSearches from './seo/PopularSearches';
+import KeywordSection from './seo/KeywordSection';
+import SEOFeatures from './seo/SEOFeatures';
+import SEOCallToAction from './seo/SEOCallToAction';
 
 const SEOBlog: React.FC = () => {
   const keywordSections = [
@@ -78,257 +82,29 @@ const SEOBlog: React.FC = () => {
     }
   ];
 
-  const trendingKeywords = [
-    "Instagram Bio Generator", "Instagram Bio Generator Font", "Instagram Bio Generator AI", "Instagram Bio Generator Copy and Paste",
-    "Instagram Bio Generator with Emoji", "Instagram Bio Generator Free", "Font Generator Instagram Bio", "Instagram Font Generator",
-    "Stylish Font Generator for Instagram Bio", "Free AI Bio Generator for Instagram", "Instagram Bio Generator Aesthetic", 
-    "Instagram Bio Generator for Girls", "Instagram Bio Generator for Boy", "Instagram Business Bio Generator",
-    "Fancy Text Generator Bio for Instagram", "Cool Text Generator for Instagram Bio", "Instagram Bio Generator Symbol",
-    "Cute Instagram Bio Generator", "Instagram Professional Bio Generator", "Instagram Stylish Bio Generator",
-    "Center Instagram Bio Generator", "Instagram Space Bio Generator", "Bio Generator Instagram Online",
-    "Instagram Font Generator Online Copy and Paste Bio", "Ahrefs Instagram Bio Generator", "Mention Com Instagram Bio Generator"
-  ];
-
-  const popularSearches = [
-    {
-      category: "Font & Style",
-      searches: [
-        "instagram bio generator font stylish",
-        "font generator bio instagram", 
-        "fancy text generator for instagram bio",
-        "instagram font generator online copy and paste bio"
-      ]
-    },
-    {
-      category: "AI & Free Tools",
-      searches: [
-        "free ai bio generator for instagram",
-        "instagram bio generator free tool",
-        "instagram bio generator ai powered"
-      ]
-    },
-    {
-      category: "Special Features",
-      searches: [
-        "instagram bio generator with emoji copy and paste",
-        "instagram bio generator aesthetic design",
-        "instagram bio generator symbol collection"
-      ]
-    },
-    {
-      category: "User Types",
-      searches: [
-        "instagram bio generator for girls cute",
-        "instagram business bio generator professional",
-        "instagram bio generator name customization"
-      ]
-    }
-  ];
-
   return (
     <section className="py-20 bg-gradient-to-br from-slate-50 via-purple-50/30 to-pink-50/30 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
       <div className="container mx-auto px-4 max-w-7xl">
-        {/* Header */}
-        <div className="text-center mb-16">
-          <div className="flex items-center justify-center gap-3 mb-6">
-            <div className="p-3 rounded-xl bg-gradient-to-br from-purple-500 to-pink-500">
-              <Search className="h-8 w-8 text-white" />
-            </div>
-            <h1 className="text-4xl lg:text-5xl font-bold bg-gradient-to-r from-purple-600 via-pink-600 to-indigo-600 bg-clip-text text-transparent">
-              Ultimate Instagram Bio Generator Guide
-            </h1>
-          </div>
-          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed">
-            Discover the best Instagram bio generator tools with AI, fonts, emojis, and copy-paste features. 
-            Create stunning Instagram bios that boost engagement and followers with our comprehensive guide.
-          </p>
-        </div>
-
-        {/* Trending Keywords */}
-        <Card className="mb-12 shadow-lg border-0 bg-gradient-to-br from-white via-blue-50/20 to-indigo-50/20 dark:from-gray-800 dark:via-gray-800/50 dark:to-gray-700/50 backdrop-blur-sm">
-          <CardHeader className="text-center">
-            <CardTitle className="flex items-center justify-center gap-3">
-              <TrendingUp className="h-6 w-6 text-blue-600" />
-              <span className="text-2xl bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
-                Trending Instagram Bio Generator Keywords
-              </span>
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="flex flex-wrap gap-3 justify-center">
-              {trendingKeywords.map((keyword, index) => (
-                <Badge 
-                  key={index}
-                  variant="secondary"
-                  className="px-4 py-2 bg-gradient-to-r from-blue-100 to-indigo-100 dark:from-blue-900 dark:to-indigo-900 text-blue-800 dark:text-blue-200 hover:from-blue-200 hover:to-indigo-200 dark:hover:from-blue-800 dark:hover:to-indigo-800 transition-all duration-200 cursor-pointer"
-                >
-                  {keyword}
-                </Badge>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
-
-        {/* Popular Search Categories */}
-        <Card className="mb-12 shadow-lg border-0 bg-gradient-to-br from-white via-green-50/20 to-emerald-50/20 dark:from-gray-800 dark:via-gray-800/50 dark:to-gray-700/50 backdrop-blur-sm">
-          <CardHeader className="text-center">
-            <CardTitle className="flex items-center justify-center gap-3">
-              <Heart className="h-6 w-6 text-green-600" />
-              <span className="text-2xl bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">
-                Popular Instagram Bio Generator Searches
-              </span>
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {popularSearches.map((category, index) => (
-                <div key={index} className="space-y-3">
-                  <h3 className="font-semibold text-gray-800 dark:text-gray-200 border-b border-gray-200 dark:border-gray-600 pb-2">
-                    {category.category}
-                  </h3>
-                  <div className="space-y-2">
-                    {category.searches.map((search, searchIndex) => (
-                      <Badge 
-                        key={searchIndex}
-                        variant="outline"
-                        className="block text-xs text-gray-600 dark:text-gray-400 border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors cursor-pointer"
-                      >
-                        {search}
-                      </Badge>
-                    ))}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
+        <SEOHeader />
+        <TrendingKeywords />
+        <PopularSearches />
 
         {/* SEO Content Sections */}
         <div className="grid lg:grid-cols-2 gap-8">
           {keywordSections.map((section, index) => (
-            <Card 
+            <KeywordSection
               key={index}
-              className="group shadow-lg border-0 bg-gradient-to-br from-white via-gray-50/50 to-white dark:from-gray-800 dark:via-gray-800/50 dark:to-gray-700/50 backdrop-blur-sm hover:shadow-xl transition-all duration-300"
-            >
-              <CardHeader className="pb-4 border-b border-gray-100 dark:border-gray-700">
-                <CardTitle className="flex items-center gap-4">
-                  <div className={`p-3 rounded-xl bg-gradient-to-br ${section.gradient} group-hover:scale-110 transition-transform duration-300`}>
-                    <section.icon className="h-6 w-6 text-white" />
-                  </div>
-                  <div className="flex-1">
-                    <h2 className={`text-xl font-semibold bg-gradient-to-r ${section.gradient} bg-clip-text text-transparent mb-2`}>
-                      {section.title}
-                    </h2>
-                    <div className="flex flex-wrap gap-2">
-                      {section.keywords.map((keyword, kidx) => (
-                        <Badge 
-                          key={kidx}
-                          variant="outline"
-                          className="text-xs border-gray-300 dark:border-gray-600 text-gray-600 dark:text-gray-400"
-                        >
-                          {keyword}
-                        </Badge>
-                      ))}
-                    </div>
-                  </div>
-                </CardTitle>
-              </CardHeader>
-              
-              <CardContent className="pt-6 space-y-4">
-                {section.content.map((paragraph, pidx) => (
-                  <p 
-                    key={pidx}
-                    className="text-gray-700 dark:text-gray-300 leading-relaxed text-sm"
-                  >
-                    {paragraph}
-                  </p>
-                ))}
-              </CardContent>
-            </Card>
+              title={section.title}
+              icon={section.icon}
+              gradient={section.gradient}
+              content={section.content}
+              keywords={section.keywords}
+            />
           ))}
         </div>
 
-        {/* SEO Features Grid */}
-        <div className="mt-16">
-          <h2 className="text-3xl font-bold text-center mb-12 bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
-            Why Choose Our Instagram Bio Generator?
-          </h2>
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {[
-              {
-                icon: Zap,
-                title: "AI-Powered Generation",
-                description: "Advanced Instagram bio generator AI creates perfect bios in seconds with smart algorithms",
-                keywords: "instagram bio generator ai, ai bio generator"
-              },
-              {
-                icon: Type,
-                title: "Font & Style Options",
-                description: "Stylish font generator for Instagram bio with fancy text and cool design options",
-                keywords: "instagram bio generator font, font generator instagram bio"
-              },
-              {
-                icon: Smile,
-                title: "Emoji Integration",
-                description: "Instagram bio generator with emoji copy and paste features for expressive profiles",
-                keywords: "instagram bio generator with emoji, emoji copy paste"
-              },
-              {
-                icon: Heart,
-                title: "100% Free Tool",
-                description: "Complete Instagram bio generator free access with no hidden costs or subscriptions",
-                keywords: "instagram bio generator free, free bio generator"
-              }
-            ].map((feature, index) => (
-              <Card 
-                key={index}
-                className="text-center p-6 shadow-lg border-0 bg-gradient-to-br from-white to-gray-50/50 dark:from-gray-800 dark:to-gray-700/50 hover:shadow-xl transition-all duration-300"
-              >
-                <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center">
-                  <feature.icon className="h-8 w-8 text-white" />
-                </div>
-                <h3 className="text-lg font-semibold mb-3 text-gray-900 dark:text-gray-100">
-                  {feature.title}
-                </h3>
-                <p className="text-sm text-gray-600 dark:text-gray-400 mb-3 leading-relaxed">
-                  {feature.description}
-                </p>
-                <div className="text-xs text-gray-500 dark:text-gray-500 italic">
-                  {feature.keywords}
-                </div>
-              </Card>
-            ))}
-          </div>
-        </div>
-
-        {/* Call to Action */}
-        <div className="mt-16 text-center">
-          <Card className="inline-block shadow-2xl border-0 bg-gradient-to-br from-purple-600 via-pink-600 to-indigo-600 text-white">
-            <CardContent className="p-8">
-              <h2 className="text-2xl font-bold mb-4">
-                Ready to Create Your Perfect Instagram Bio?
-              </h2>
-              <p className="text-lg mb-6 text-purple-100">
-                Join thousands who've boosted their Instagram presence with our free Instagram bio generator AI tool
-              </p>
-              <div className="flex flex-wrap justify-center gap-2 text-sm">
-                <Badge variant="secondary" className="bg-white/20 text-white border-white/30">
-                  #InstagramBioGenerator
-                </Badge>
-                <Badge variant="secondary" className="bg-white/20 text-white border-white/30">
-                  #InstagramBioGeneratorFont
-                </Badge>
-                <Badge variant="secondary" className="bg-white/20 text-white border-white/30">
-                  #InstagramBioGeneratorAI
-                </Badge>
-                <Badge variant="secondary" className="bg-white/20 text-white border-white/30">
-                  #FreeInstagramBioGenerator
-                </Badge>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
+        <SEOFeatures />
+        <SEOCallToAction />
       </div>
     </section>
   );
