@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { Copy, Sparkles, Heart, Star, Moon, Sun, Type, Hash, Palette, Lightbulb, Wand2 } from 'lucide-react';
 import { Button } from "@/components/ui/button";
@@ -119,7 +120,7 @@ const Index = () => {
               <Sparkles className="h-8 w-8 text-white" />
             </div>
             <h1 className="text-3xl lg:text-5xl font-bold bg-gradient-to-r from-purple-600 via-pink-600 to-indigo-600 bg-clip-text text-transparent">
-              Instagram Bio Generator
+              Create the Perfect Instagram Bio — Instantly
             </h1>
             <div className="p-2 rounded-xl bg-gradient-to-br from-pink-500 to-purple-500">
               <Sparkles className="h-8 w-8 text-white" />
@@ -142,6 +143,27 @@ const Index = () => {
           </Button>
         </div>
 
+        {/* SEO Subheadings Section */}
+        <div className="text-center mb-12 space-y-8">
+          <div>
+            <h2 className="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-200 mb-4">
+              🧠 Why Your Instagram Bio Matters
+            </h2>
+            <p className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+              Your Instagram bio is the first impression visitors get of your profile. Make it count with our AI-powered generator that creates engaging, unique bios tailored to your personality and goals.
+            </p>
+          </div>
+          
+          <div>
+            <h2 className="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-200 mb-4">
+              ⚡ Free Instagram Bio Generator – How It Works
+            </h2>
+            <p className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+              Simply choose your style, let our AI generate creative ideas, customize with fonts and symbols, then copy and paste directly to your Instagram profile. It takes just seconds!
+            </p>
+          </div>
+        </div>
+
         {/* Navigation */}
         <TubelightNavbar 
           items={navItems} 
@@ -154,11 +176,21 @@ const Index = () => {
           <div className="space-y-6">
             {/* AI Bio Generator */}
             <div id="ai">
+              <div className="mb-4">
+                <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-200">
+                  💡 Choose Your Bio Style: Aesthetic, Funny, Professional & More
+                </h3>
+              </div>
               <AIBioGenerator onBioGenerated={handleAIBioGenerated} />
             </div>
             
             {/* Template Selector */}
             <div id="templates">
+              <div className="mb-4">
+                <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-200">
+                  🎯 Generate Bios for Influencers, Businesses, and Personal Accounts
+                </h3>
+              </div>
               <Card className="shadow-lg border-0 bg-gradient-to-br from-white via-indigo-50/20 to-blue-50/20 dark:from-gray-800 dark:via-gray-800/50 dark:to-gray-700/50 backdrop-blur-sm">
                 <CardHeader className="pb-4 border-b border-gray-100 dark:border-gray-700">
                   <CardTitle className="flex items-center gap-3">
@@ -196,6 +228,11 @@ const Index = () => {
           <div className="space-y-6">
             {/* Bio Preview */}
             <div id="preview">
+              <div className="mb-4">
+                <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-200">
+                  📱 One Click, Instant Copy – Use it on Instagram Right Away
+                </h3>
+              </div>
               <BioPreview bioText={bioText} selectedFont={selectedFont} />
             </div>
             
