@@ -6,14 +6,21 @@ import { TrendingUp } from 'lucide-react';
 
 const TrendingKeywords: React.FC = () => {
   const trendingKeywords = [
-    "Instagram Bio Generator", "Instagram Bio Generator Font", "Instagram Bio Generator AI", "Instagram Bio Generator Copy and Paste",
-    "Instagram Bio Generator with Emoji", "Instagram Bio Generator Free", "Font Generator Instagram Bio", "Instagram Font Generator",
-    "Stylish Font Generator for Instagram Bio", "Free AI Bio Generator for Instagram", "Instagram Bio Generator Aesthetic", 
-    "Instagram Bio Generator for Girls", "Instagram Bio Generator for Boy", "Instagram Business Bio Generator",
-    "Fancy Text Generator Bio for Instagram", "Cool Text Generator for Instagram Bio", "Instagram Bio Generator Symbol",
-    "Cute Instagram Bio Generator", "Instagram Professional Bio Generator", "Instagram Stylish Bio Generator",
-    "Center Instagram Bio Generator", "Instagram Space Bio Generator", "Bio Generator Instagram Online",
-    "Instagram Font Generator Online Copy and Paste Bio", "Ahrefs Instagram Bio Generator", "Mention Com Instagram Bio Generator"
+    "Instagram Bio Generator", "AI Instagram Bio Generator", "Free Instagram Bio Generator", "IG Bio Generator", 
+    "Insta Bio Generator", "Instagram Bio Maker", "Create Instagram Bio", "Instagram Bio Creator Online",
+    "Best Instagram Bio Generator", "Aesthetic Instagram Bio Generator", "Generate Instagram Bio Free",
+    "Custom Instagram Bio Tool", "One-Click Instagram Bio Generator", "Professional Instagram Bio Creator",
+    "Instagram Bio Generator Font", "Instagram Font Generator", "Stylish Font Generator for Instagram Bio", 
+    "Instagram Bio Generator AI", "Funny Instagram Bio Generator", "Motivational Instagram Bio Tool",
+    "Instagram Bio Generator Copy and Paste", "Instagram Bio Generator with Emoji", "Emoji Instagram Bio Generator",
+    "Free Instagram Bio Generator with Emojis", "Instagram Bio Generator with Symbols", "Copy and Paste Instagram Bios",
+    "Cool Instagram Bios", "Creative Instagram Bios", "Aesthetic Instagram Bios", "Professional Instagram Bios",
+    "Short Instagram Bios", "Witty Instagram Bios", "Cute Instagram Bios", "Classy Instagram Bios",
+    "Instagram Bio for Girls", "Instagram Bio for Boys", "Instagram Bio for Business", "Instagram Bio for Artists",
+    "Instagram Bio for Influencers", "Instagram Bio for Photographers", "Instagram Bio for Entrepreneurs",
+    "Bio Ideas for Instagram Business Page", "Cute Instagram Bio Generator", "Influencer Instagram Bio Creator",
+    "Instagram Bio Character Counter", "Instagram Bio with Fonts", "Instagram Bio with Links Generator",
+    "Instagram Profile Generator", "Personal Branding", "Social Media Marketing", "Username Ideas"
   ];
 
   return (
