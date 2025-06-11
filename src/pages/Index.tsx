@@ -1,5 +1,6 @@
+
 import React, { useState, useEffect } from 'react';
-import { Copy, Sparkles, Heart, Star, Moon, Sun, Type, Hash, Palette, Lightbulb, Wand2 } from 'lucide-react';
+import { Copy, Sparkles, Heart, Star, Moon, Sun, Type, Hash, Palette, Lightbulb, Wand2, Edit3 } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -216,20 +217,34 @@ const Index = () => {
               </CardContent>
             </Card>
             
-            {/* Text Input */}
-            <Card className="shadow-lg border-0 bg-gradient-to-br from-white via-green-50/20 to-emerald-50/20 dark:from-gray-800 dark:via-gray-800/50 dark:to-gray-700/50 backdrop-blur-sm">
-              <CardHeader className="pb-4 border-b border-gray-100 dark:border-gray-700">
+            {/* Text Input - Enhanced with highlighting */}
+            <Card className="shadow-lg border-2 border-green-200 dark:border-green-600 bg-gradient-to-br from-white via-green-50/30 to-emerald-50/30 dark:from-gray-800 dark:via-gray-800/50 dark:to-gray-700/50 backdrop-blur-sm relative overflow-hidden">
+              {/* Pulsing highlight effect */}
+              <div className="absolute inset-0 bg-gradient-to-r from-green-400/10 via-emerald-400/10 to-green-400/10 animate-pulse"></div>
+              
+              {/* Spotlight indicator */}
+              <div className="absolute top-4 right-4 flex items-center gap-2">
+                <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
+                <span className="text-xs font-medium text-green-600 dark:text-green-400 animate-pulse">
+                  Customize Here!
+                </span>
+              </div>
+              
+              <CardHeader className="pb-4 border-b border-green-100 dark:border-green-700 relative z-10">
                 <CardTitle className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
-                    <div className="p-2 rounded-lg bg-gradient-to-br from-green-500 to-emerald-500">
-                      <Heart className="h-5 w-5 text-white" />
+                    <div className="p-2 rounded-lg bg-gradient-to-br from-green-500 to-emerald-500 shadow-lg">
+                      <Edit3 className="h-5 w-5 text-white" />
                     </div>
                     <div>
-                      <h3 className="text-xl font-semibold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">
+                      <h3 className="text-xl font-semibold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent flex items-center gap-2">
                         Write Your Bio
+                        <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300 animate-bounce">
+                          Start Here!
+                        </span>
                       </h3>
                       <p className="text-sm text-gray-600 dark:text-gray-400 font-normal">
-                        Craft your perfect Instagram bio
+                        Craft your perfect Instagram bio • Customize any template
                       </p>
                     </div>
                   </div>
@@ -241,14 +256,25 @@ const Index = () => {
                   </Badge>
                 </CardTitle>
               </CardHeader>
-              <CardContent className="pt-6">
-                <Textarea
-                  value={bioText}
-                  onChange={(e) => setBioText(e.target.value)}
-                  placeholder="Type your bio here, use AI generation above, or select a template... Use line breaks and emojis! ✨"
-                  className="min-h-32 resize-none border-gray-200 dark:border-gray-600 focus:border-green-500 dark:focus:border-green-400 text-base leading-relaxed"
-                  maxLength={characterLimit + 50}
-                />
+              <CardContent className="pt-6 relative z-10">
+                <div className="relative">
+                  <Textarea
+                    value={bioText}
+                    onChange={(e) => setBioText(e.target.value)}
+                    placeholder="✨ Type your bio here, or use AI generation and templates above to get started! ✨
+
+Use line breaks and emojis to make it pop! 
+Try: Your Name | Your Passion | Your Goal"
+                    className="min-h-32 resize-none border-green-200 dark:border-green-600 focus:border-green-500 dark:focus:border-green-400 text-base leading-relaxed bg-white/50 dark:bg-gray-900/50 backdrop-blur-sm"
+                    maxLength={characterLimit + 50}
+                  />
+                  {/* Floating helper text */}
+                  {!bioText && (
+                    <div className="absolute top-2 right-2 bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-300 text-xs px-2 py-1 rounded-lg animate-pulse">
+                      👆 Click to customize!
+                    </div>
+                  )}
+                </div>
               </CardContent>
             </Card>
 
@@ -278,6 +304,10 @@ const Index = () => {
                 <div className="flex items-start gap-3">
                   <div className="w-2 h-2 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 mt-2 flex-shrink-0"></div>
                   <p>Use AI generation for personalized bio ideas</p>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="w-2 h-2 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 mt-2 flex-shrink-0"></div>
+                  <p>Click "New Templates" to refresh bio template options</p>
                 </div>
                 <div className="flex items-start gap-3">
                   <div className="w-2 h-2 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 mt-2 flex-shrink-0"></div>
