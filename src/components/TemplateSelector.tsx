@@ -2,18 +2,13 @@
 import React from 'react';
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { 
-  Briefcase, Camera, Palette, Coffee, Gamepad2, BookOpen, 
-  Music, Heart, Star, Zap, Sun, Moon, Sparkles, Crown,
-  Target, Rocket, Globe, Mountain, Waves, Flower2
-} from 'lucide-react';
+import { Briefcase, Camera, Palette, Coffee, Gamepad2, BookOpen } from 'lucide-react';
 
 interface TemplateSelectorProps {
   onSelectTemplate: (template: string) => void;
 }
 
 const templates = [
-  // Influencer Templates
   {
     icon: Camera,
     category: "Influencer",
@@ -21,39 +16,11 @@ const templates = [
     badge: "Popular"
   },
   {
-    icon: Sparkles,
-    category: "Influencer",
-    template: `🌟 Digital Storyteller\n📱 Creating magic one post at a time\n🎯 DM for partnerships`,
-    badge: "Trending"
-  },
-  {
-    icon: Crown,
-    category: "Influencer",
-    template: `👑 Lifestyle Curator\n✨ Inspiring everyday moments\n🔗 Link in bio for collabs`,
-    badge: "Elite"
-  },
-
-  // Business Templates
-  {
     icon: Briefcase,
     category: "Business",
     template: `🏢 CEO & Entrepreneur\n💼 Building the future, one step at a time\n🌐 www.yourwebsite.com`,
     badge: "Professional"
   },
-  {
-    icon: Target,
-    category: "Business",
-    template: `🎯 Marketing Strategist\n📈 Turning ideas into results\n💡 Strategy calls: link in bio`,
-    badge: "Expert"
-  },
-  {
-    icon: Rocket,
-    category: "Business",
-    template: `🚀 Startup Founder\n🌟 Disrupting industries daily\n📧 hello@yourstartup.com`,
-    badge: "Innovation"
-  },
-
-  // Artist Templates
   {
     icon: Palette,
     category: "Artist",
@@ -61,39 +28,11 @@ const templates = [
     badge: "Creative"
   },
   {
-    icon: Music,
-    category: "Artist",
-    template: `🎵 Music Producer & Sound Designer\n🎧 Creating beats that move souls\n🎤 Bookings: youremail@music.com`,
-    badge: "Musical"
-  },
-  {
-    icon: Flower2,
-    category: "Artist",
-    template: `🌸 Photographer & Visual Poet\n📷 Finding beauty in everyday moments\n🖼️ Prints available below`,
-    badge: "Aesthetic"
-  },
-
-  // Lifestyle Templates
-  {
     icon: Coffee,
     category: "Lifestyle",
     template: `☕ Coffee lover & Life enthusiast\n🌸 Living my best life daily\n📍 Currently in: Your City`,
     badge: "Cozy"
   },
-  {
-    icon: Sun,
-    category: "Lifestyle",
-    template: `☀️ Sunshine seeker & Adventure lover\n🌺 Spreading positivity everywhere\n✈️ Next destination: Unknown`,
-    badge: "Positive"
-  },
-  {
-    icon: Heart,
-    category: "Lifestyle",
-    template: `💖 Self-love advocate & wellness warrior\n🧘‍♀️ Mind, body, soul alignment\n🌱 Growing every single day`,
-    badge: "Wellness"
-  },
-
-  // Gamer Templates
   {
     icon: Gamepad2,
     category: "Gamer",
@@ -101,78 +40,10 @@ const templates = [
     badge: "Gaming"
   },
   {
-    icon: Zap,
-    category: "Gamer",
-    template: `⚡ Esports Athlete\n🎯 Precision is my superpower\n🏅 Ranked #1 in your heart`,
-    badge: "Competitive"
-  },
-  {
-    icon: Star,
-    category: "Gamer",
-    template: `🌟 Content Creator & Gaming Enthusiast\n🎬 Epic moments, epic fails\n🔴 Live every evening`,
-    badge: "Streamer"
-  },
-
-  // Minimal Templates
-  {
     icon: BookOpen,
     category: "Minimal",
     template: `less is more\nsimple thoughts\nquiet moments`,
     badge: "Clean"
-  },
-  {
-    icon: Moon,
-    category: "Minimal",
-    template: `🌙 dreamer\n☁️ wanderer\n✨ believer`,
-    badge: "Dreamy"
-  },
-  {
-    icon: Waves,
-    category: "Minimal",
-    template: `like waves\nI come and go\nbut leave traces`,
-    badge: "Poetic"
-  },
-
-  // Travel Templates
-  {
-    icon: Globe,
-    category: "Travel",
-    template: `🌍 World Explorer & Culture Collector\n✈️ 47 countries and counting\n📸 Stories from the road`,
-    badge: "Wanderlust"
-  },
-  {
-    icon: Mountain,
-    category: "Travel",
-    template: `⛰️ Adventure Seeker & Peak Chaser\n🥾 Hiking through life one trail at a time\n🏕️ Currently exploring: Mountains`,
-    badge: "Adventure"
-  },
-
-  // Fitness Templates
-  {
-    icon: Zap,
-    category: "Fitness",
-    template: `💪 Fitness Coach & Transformation Expert\n🔥 Your strongest version awaits\n📱 Workout plans in bio`,
-    badge: "Strong"
-  },
-  {
-    icon: Target,
-    category: "Fitness",
-    template: `🎯 Personal Trainer & Wellness Guide\n🏃‍♀️ Run your own race\n💯 Programs: link below`,
-    badge: "Motivated"
-  },
-
-  // Food Templates
-  {
-    icon: Coffee,
-    category: "Food",
-    template: `👩‍🍳 Home Chef & Recipe Creator\n🍽️ Making everyday meals extraordinary\n📖 New recipes weekly`,
-    badge: "Delicious"
-  },
-  {
-    icon: Heart,
-    category: "Food",
-    template: `🥗 Nutritionist & Healthy Living Advocate\n🌱 Fuel your body, feed your soul\n📋 Meal plans available`,
-    badge: "Healthy"
   }
 ];
 
