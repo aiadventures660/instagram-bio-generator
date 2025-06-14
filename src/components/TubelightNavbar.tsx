@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Sparkles } from "lucide-react";
@@ -37,7 +36,7 @@ export const TubelightNavbar: React.FC<TubelightNavbarProps> = ({
   };
 
   return (
-    <div className="flex justify-center mb-8 px-4">
+    <div className="hidden md:flex justify-center mb-8 px-4">
       <motion.nav
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
