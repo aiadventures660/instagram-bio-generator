@@ -12,37 +12,23 @@ interface BioPreviewProps {
 
 export const BioPreview: React.FC<BioPreviewProps> = ({ bioText, selectedFont }) => {
   return (
-    <Card className="shadow-lg border-2 border-pink-200 dark:border-pink-600 bg-gradient-to-br from-white via-rose-50/30 to-pink-50/30 dark:from-gray-800 dark:via-gray-800/50 dark:to-gray-700/50 backdrop-blur-sm relative overflow-hidden">
-      {/* Pulsing highlight effect */}
-      <div className="absolute inset-0 bg-gradient-to-r from-pink-400/10 via-rose-400/10 to-pink-400/10 animate-pulse"></div>
-      
-      {/* Spotlight indicator */}
-      <div className="absolute top-4 right-4 flex items-center gap-2 z-10">
-        <div className="w-2 h-2 rounded-full bg-pink-500 animate-pulse"></div>
-        <span className="text-xs font-medium text-pink-600 dark:text-pink-400 animate-pulse">
-          Preview Ready!
-        </span>
-      </div>
-
-      <CardHeader className="pb-4 border-b border-pink-100 dark:border-pink-700 relative z-10">
+    <Card className="shadow-lg border-0 bg-gradient-to-br from-white via-rose-50/20 to-pink-50/20 dark:from-gray-800 dark:via-gray-800/50 dark:to-gray-700/50 backdrop-blur-sm">
+      <CardHeader className="pb-4 border-b border-gray-100 dark:border-gray-700">
         <CardTitle className="flex items-center gap-3">
-          <div className="p-2 rounded-lg bg-gradient-to-br from-pink-500 to-rose-500 shadow-lg">
+          <div className="p-2 rounded-lg bg-gradient-to-br from-pink-500 to-rose-500">
             <Instagram className="h-5 w-5 text-white" />
           </div>
           <div>
-            <h3 className="text-xl font-semibold bg-gradient-to-r from-pink-600 to-rose-600 bg-clip-text text-transparent flex items-center gap-2">
+            <h3 className="text-xl font-semibold bg-gradient-to-r from-pink-600 to-rose-600 bg-clip-text text-transparent">
               Instagram Preview
-              <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-pink-100 text-pink-700 dark:bg-pink-900 dark:text-pink-300 animate-bounce">
-                Live View!
-              </span>
             </h3>
             <p className="text-sm text-gray-600 dark:text-gray-400 font-normal">
-              See how your bio will look • Real-time preview
+              See how your bio will look
             </p>
           </div>
         </CardTitle>
       </CardHeader>
-      <CardContent className="pt-6 relative z-10">
+      <CardContent className="pt-6">
         {/* Mock Instagram Profile */}
         <div className="bg-white dark:bg-gray-900 rounded-xl p-6 border border-gray-200 dark:border-gray-700 shadow-sm">
           {/* Profile Header */}
