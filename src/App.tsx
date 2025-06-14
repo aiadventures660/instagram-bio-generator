@@ -4,6 +4,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { DarkModeProvider } from "@/contexts/DarkModeContext";
 import ScrollToTop from "./components/ScrollToTop";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
@@ -22,28 +23,30 @@ const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <ScrollToTop />
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/aesthetic-bios" element={<AestheticBios />} />
-          <Route path="/funny-bios" element={<FunnyBios />} />
-          <Route path="/business-bios" element={<BusinessBios />} />
-          <Route path="/ai-bio-generator" element={<AIBioGeneratorPage />} />
-          <Route path="/cool-instagram-bio-ideas" element={<CoolBioIdeas />} />
-          <Route path="/contact-us" element={<ContactUs />} />
-          <Route path="/about-us" element={<AboutUs />} />
-          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-          <Route path="/terms-conditions" element={<TermsConditions />} />
-          <Route path="/disclaimer" element={<Disclaimer />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
-    </TooltipProvider>
+    <DarkModeProvider>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <ScrollToTop />
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route path="/aesthetic-bios" element={<AestheticBios />} />
+            <Route path="/funny-bios" element={<FunnyBios />} />
+            <Route path="/business-bios" element={<BusinessBios />} />
+            <Route path="/ai-bio-generator" element={<AIBioGeneratorPage />} />
+            <Route path="/cool-instagram-bio-ideas" element={<CoolBioIdeas />} />
+            <Route path="/contact-us" element={<ContactUs />} />
+            <Route path="/about-us" element={<AboutUs />} />
+            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+            <Route path="/terms-conditions" element={<TermsConditions />} />
+            <Route path="/disclaimer" element={<Disclaimer />} />
+            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </BrowserRouter>
+      </TooltipProvider>
+    </DarkModeProvider>
   </QueryClientProvider>
 );
 

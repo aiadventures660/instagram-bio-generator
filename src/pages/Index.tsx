@@ -1,5 +1,4 @@
-
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Type, Hash, Palette, Lightbulb, Wand2, Star } from 'lucide-react';
 import { useToast } from "@/hooks/use-toast";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -12,6 +11,7 @@ import { TubelightNavbar } from "@/components/TubelightNavbar";
 import { Header } from "@/components/Header";
 import SEOBlog from "@/components/SEOBlog";
 import Footer from "@/components/ui/footer";
+import { useDarkMode } from "@/contexts/DarkModeContext";
 
 // New components
 import { HomeHeader } from "@/components/home/HomeHeader";
@@ -23,8 +23,8 @@ import { CopyBioButton } from "@/components/home/CopyBioButton";
 const Index = () => {
   const [bioText, setBioText] = useState('');
   const [selectedFont, setSelectedFont] = useState('normal');
-  const [darkMode, setDarkMode] = useState(false);
   const [activeSection, setActiveSection] = useState('ai');
+  const { darkMode, toggleDarkMode } = useDarkMode();
   const { toast } = useToast();
   const characterLimit = 150;
 
@@ -119,7 +119,7 @@ const Index = () => {
       
       <div className="container mx-auto px-3 lg:px-4 py-4 lg:py-8 max-w-7xl">
         {/* Header */}
-        <HomeHeader darkMode={darkMode} onToggleDarkMode={() => setDarkMode(!darkMode)} />
+        <HomeHeader darkMode={darkMode} onToggleDarkMode={toggleDarkMode} />
 
         {/* Quick Links Section */}
         <QuickLinksSection />
