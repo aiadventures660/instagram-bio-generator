@@ -1,9 +1,18 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Home, Mail, Info, Shield, FileText, Instagram } from 'lucide-react';
+import { Home, Mail, Info, Shield, FileText, Instagram, Menu, X } from 'lucide-react';
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 
 export const Header: React.FC = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
   const navItems = [{
     path: '/',
     label: 'Home',
@@ -25,6 +34,10 @@ export const Header: React.FC = () => {
     label: 'Disclaimer',
     icon: FileText
   }];
+
+  const handleMobileNavClick = () => {
+    setIsOpen(false);
+  };
   
   return <header className="bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-gray-200/50 dark:border-gray-700/50 sticky top-0 z-50">
       <div className="container mx-auto px-4 py-3">
@@ -39,7 +52,7 @@ export const Header: React.FC = () => {
             </span>
           </Link>
 
-          {/* Navigation */}
+          {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-6">
             {navItems.map(item => {
             const IconComponent = item.icon;
@@ -50,13 +63,43 @@ export const Header: React.FC = () => {
           })}
           </nav>
 
-          {/* Mobile menu button */}
+          {/* Mobile menu */}
           <div className="md:hidden">
-            <button className="p-2 rounded-lg text-gray-600 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 hover:bg-purple-50 dark:hover:bg-purple-900/20 transition-colors">
-              <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-              </svg>
-            </button>
+            <Sheet open={isOpen} onOpenChange={setIsOpen}>
+              <SheetTrigger asChild>
+                <button className="p-2 rounded-lg text-gray-600 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 hover:bg-purple-50 dark:hover:bg-purple-900/20 transition-colors">
+                  <Menu className="h-5 w-5" />
+                </button>
+              </SheetTrigger>
+              <SheetContent side="right" className="w-80">
+                <SheetHeader>
+                  <SheetTitle className="flex items-center gap-2">
+                    <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-white">
+                      <Instagram className="h-5 w-5" />
+                    </div>
+                    <span className="text-lg font-bold bg-gradient-to-r from-purple-600 via-pink-600 to-orange-600 bg-clip-text text-transparent">
+                      Bio Generator
+                    </span>
+                  </SheetTitle>
+                </SheetHeader>
+                <nav className="flex flex-col space-y-4 mt-8">
+                  {navItems.map(item => {
+                    const IconComponent = item.icon;
+                    return (
+                      <Link 
+                        key={item.path} 
+                        to={item.path} 
+                        onClick={handleMobileNavClick}
+                        className="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-600 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 hover:bg-purple-50 dark:hover:bg-purple-900/20 transition-all duration-200 text-base font-medium"
+                      >
+                        <IconComponent className="h-5 w-5" />
+                        <span>{item.label}</span>
+                      </Link>
+                    );
+                  })}
+                </nav>
+              </SheetContent>
+            </Sheet>
           </div>
         </div>
       </div>
