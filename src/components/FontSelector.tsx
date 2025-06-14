@@ -73,6 +73,77 @@ const fontTransforms = {
       '0': '0̲', '1': '1̲', '2': '2̲', '3': '3̲', '4': '4̲', '5': '5̲', '6': '6̲', '7': '7̲', '8': '8̲', '9': '9̲'
     };
     return underlinedMap[char] || char;
+  }),
+  // NEW FONT VARIATIONS
+  double: (text: string) => text.replace(/[a-zA-Z0-9]/g, char => {
+    const doubleMap: { [key: string]: string } = {
+      'a': '𝕒', 'b': '𝕓', 'c': '𝕔', 'd': '𝕕', 'e': '𝕖', 'f': '𝕗', 'g': '𝕘', 'h': '𝕙', 'i': '𝕚', 'j': '𝕛', 'k': '𝕜', 'l': '𝕝', 'm': '𝕞', 'n': '𝕟', 'o': '𝕠', 'p': '𝕡', 'q': '𝕢', 'r': '𝕣', 's': '𝕤', 't': '𝕥', 'u': '𝕦', 'v': '𝕧', 'w': '𝕨', 'x': '𝕩', 'y': '𝕪', 'z': '𝕫',
+      'A': '𝔸', 'B': '𝔹', 'C': 'ℂ', 'D': '𝔻', 'E': '𝔼', 'F': '𝔽', 'G': '𝔾', 'H': 'ℍ', 'I': '𝕀', 'J': '𝕁', 'K': '𝕂', 'L': '𝕃', 'M': '𝕄', 'N': 'ℕ', 'O': '𝕆', 'P': 'ℙ', 'Q': 'ℚ', 'R': 'ℝ', 'S': '𝕊', 'T': '𝕋', 'U': '𝕌', 'V': '𝕍', 'W': '𝕎', 'X': '𝕏', 'Y': '⅄', 'Z': 'ℤ',
+      '0': '𝟘', '1': '𝟙', '2': '𝟚', '3': '𝟛', '4': '𝟜', '5': '𝟝', '6': '𝟞', '7': '𝟟', '8': '𝟠', '9': '𝟡'
+    };
+    return doubleMap[char] || char;
+  }),
+  monospace: (text: string) => text.replace(/[a-zA-Z0-9]/g, char => {
+    const monospaceMap: { [key: string]: string } = {
+      'a': '𝚊', 'b': '𝚋', 'c': '𝚌', 'd': '𝚍', 'e': '𝚎', 'f': '𝚏', 'g': '𝚐', 'h': '𝚑', 'i': '𝚒', 'j': '𝚓', 'k': '𝚔', 'l': '𝚕', 'm': '𝚖', 'n': '𝚗', 'o': '𝚘', 'p': '𝚙', 'q': '𝚚', 'r': '𝚛', 's': '𝚜', 't': '𝚝', 'u': '𝚞', 'v': '𝚟', 'w': '𝚠', 'x': '𝚡', 'y': '𝚢', 'z': '𝚣',
+      'A': '𝙰', 'B': '𝙱', 'C': '𝙲', 'D': '𝙳', 'E': '𝙴', 'F': '𝙵', 'G': '𝙶', 'H': '𝙷', 'I': '𝙸', 'J': '𝙹', 'K': '𝙺', 'L': '𝙻', 'M': '𝙼', 'N': '𝙽', 'O': '𝙾', 'P': '𝙿', 'Q': '𝚀', 'R': '𝚁', 'S': '𝚂', 'T': '𝚃', 'U': '𝚄', 'V': '𝚅', 'W': '𝚆', 'X': '𝚇', 'Y': '𝚈', 'Z': '𝚉',
+      '0': '𝟶', '1': '𝟷', '2': '𝟸', '3': '𝟹', '4': '𝟺', '5': '𝟻', '6': '𝟼', '7': '𝟽', '8': '𝟾', '9': '𝟿'
+    };
+    return monospaceMap[char] || char;
+  }),
+  strikethrough: (text: string) => text.replace(/[a-zA-Z0-9]/g, char => {
+    return char + '̶';
+  }),
+  bubble: (text: string) => text.replace(/[a-zA-Z0-9]/g, char => {
+    const bubbleMap: { [key: string]: string } = {
+      'a': 'ⓐ', 'b': 'ⓑ', 'c': 'ⓒ', 'd': 'ⓓ', 'e': 'ⓔ', 'f': 'ⓕ', 'g': 'ⓖ', 'h': 'ⓗ', 'i': 'ⓘ', 'j': 'ⓙ', 'k': 'ⓚ', 'l': 'ⓛ', 'm': 'ⓜ', 'n': 'ⓝ', 'o': 'ⓞ', 'p': 'ⓟ', 'q': 'ⓠ', 'r': 'ⓡ', 's': 'ⓢ', 't': 'ⓣ', 'u': 'ⓤ', 'v': 'ⓥ', 'w': 'ⓦ', 'x': 'ⓧ', 'y': 'ⓨ', 'z': 'ⓩ',
+      'A': 'Ⓐ', 'B': 'Ⓑ', 'C': 'Ⓒ', 'D': 'Ⓓ', 'E': 'Ⓔ', 'F': 'Ⓕ', 'G': 'Ⓖ', 'H': 'Ⓗ', 'I': 'Ⓘ', 'J': 'Ⓙ', 'K': 'Ⓚ', 'L': 'Ⓛ', 'M': 'Ⓜ', 'N': 'Ⓝ', 'O': 'Ⓞ', 'P': 'Ⓟ', 'Q': 'Ⓠ', 'R': 'Ⓡ', 'S': 'Ⓢ', 'T': 'Ⓣ', 'U': 'Ⓤ', 'V': 'Ⓥ', 'W': 'Ⓦ', 'X': 'Ⓧ', 'Y': 'Ⓨ', 'Z': 'Ⓩ',
+      '0': '⓪', '1': '①', '2': '②', '3': '③', '4': '④', '5': '⑤', '6': '⑥', '7': '⑦', '8': '⑧', '9': '⑨'
+    };
+    return bubbleMap[char] || char;
+  }),
+  reverse: (text: string) => text.replace(/[a-zA-Z]/g, char => {
+    const reverseMap: { [key: string]: string } = {
+      'a': 'ɐ', 'b': 'q', 'c': 'ɔ', 'd': 'p', 'e': 'ǝ', 'f': 'ɟ', 'g': 'ƃ', 'h': 'ɥ', 'i': 'ᴉ', 'j': 'ɾ', 'k': 'ʞ', 'l': 'l', 'm': 'ɯ', 'n': 'u', 'o': 'o', 'p': 'd', 'q': 'b', 'r': 'ɹ', 's': 's', 't': 'ʇ', 'u': 'n', 'v': 'ʌ', 'w': 'ʍ', 'x': 'x', 'y': 'ʎ', 'z': 'z',
+      'A': '∀', 'B': 'ᗺ', 'C': 'Ɔ', 'D': 'ᗡ', 'E': 'Ǝ', 'F': 'ᖴ', 'G': 'פ', 'H': 'H', 'I': 'I', 'J': 'ſ', 'K': 'ʞ', 'L': '˥', 'M': 'W', 'N': 'N', 'O': 'O', 'P': 'Ԁ', 'Q': 'Q', 'R': 'ᴿ', 'S': '𝒮', 'T': '𝕋', 'U': '𝕌', 'V': '𝕍', 'W': 'W', 'X': 'X', 'Y': '⅄', 'Z': 'Z'
+    };
+    return reverseMap[char] || char;
+  }),
+  mirror: (text: string) => text.replace(/[a-zA-Z0-9]/g, char => {
+    const mirrorMap: { [key: string]: string } = {
+      'a': 'ɒ', 'b': 'd', 'c': 'ɔ', 'd': 'b', 'e': 'ɘ', 'f': 'Ꮈ', 'g': 'ǫ', 'h': 'ʜ', 'i': 'i', 'j': 'ꞁ', 'k': 'ʞ', 'l': 'l', 'm': 'm', 'n': 'n', 'o': 'o', 'p': 'q', 'q': 'p', 'r': 'ɿ', 's': 'ꙅ', 't': 'ƚ', 'u': 'u', 'v': 'v', 'w': 'w', 'x': 'x', 'y': 'ʏ', 'z': 'z',
+      'A': 'A', 'B': 'ᙠ', 'C': 'Ɔ', 'D': 'ᗡ', 'E': 'Ǝ', 'F': 'ᖴ', 'G': 'Ǫ', 'H': 'H', 'I': 'I', 'J': 'Ⴑ', 'K': 'ʞ', 'L': '⅃', 'M': 'M', 'N': 'N', 'O': 'O', 'P': 'ꟼ', 'Q': 'Ϙ', 'R': 'ᴿ', 'S': 'Ꙅ', 'T': 'T', 'U': 'U', 'V': 'V', 'W': 'W', 'X': 'X', 'Y': 'Y', 'Z': 'Z',
+      '0': '0', '1': '⇂', '2': 'ς', '3': 'Ɛ', '4': 'ㄣ', '5': 'ट', '6': '9', '7': 'ㄥ', '8': '8', '9': '6'
+    };
+    return mirrorMap[char] || char;
+  }),
+  negative: (text: string) => text.replace(/[a-zA-Z0-9]/g, char => {
+    const negativeMap: { [key: string]: string } = {
+      'a': '🅰', 'b': '🅱', 'c': '🅲', 'd': '🅳', 'e': '🅴', 'f': '🅵', 'g': '🅶', 'h': '🅷', 'i': '🅸', 'j': '🅹', 'k': '🅺', 'l': '🅻', 'm': '🅼', 'n': '🅽', 'o': '🅾', 'p': '🅿', 'q': '🆀', 'r': '🆁', 's': '🆂', 't': '🆃', 'u': '🆄', 'v': '🆅', 'w': '🆆', 'x': '🆇', 'y': '🆈', 'z': '🆉',
+      'A': '🅰', 'B': '🅱', 'C': '🅲', 'D': '🅳', 'E': '🅴', 'F': '🅵', 'G': '🅶', 'H': '🅷', 'I': '🅸', 'J': '🅹', 'K': '🅺', 'L': '🅻', 'M': '🅼', 'N': '🅽', 'O': '🅾', 'P': '🅿', 'Q': '🆀', 'R': '🆁', 'S': '🆂', 'T': '🆃', 'U': '🆄', 'V': '🆅', 'W': '🆆', 'X': '🆇', 'Y': '🆈', 'Z': '🆉',
+      '0': '⓪', '1': '①', '2': '②', '3': '③', '4': '④', '5': '⑤', '6': '⑥', '7': '⑦', '8': '⑧', '9': '⑨'
+    };
+    return negativeMap[char] || char;
+  }),
+  fraktur: (text: string) => text.replace(/[a-zA-Z]/g, char => {
+    const frakturMap: { [key: string]: string } = {
+      'a': '𝔞', 'b': '𝔟', 'c': '𝔠', 'd': '𝔡', 'e': '𝔢', 'f': '𝔣', 'g': '𝔤', 'h': '𝔥', 'i': '𝔦', 'j': '𝔧', 'k': '𝔨', 'l': '𝔩', 'm': '𝔪', 'n': '𝔫', 'o': '𝔬', 'p': '𝔭', 'q': '𝔮', 'r': '𝔯', 's': '𝔰', 't': '𝔱', 'u': '𝔲', 'v': '𝔳', 'w': '𝔴', 'x': '𝔵', 'y': '𝔶', 'z': '𝔷',
+      'A': '𝔄', 'B': '𝔅', 'C': 'ℭ', 'D': '𝔇', 'E': '𝔈', 'F': '𝔉', 'G': '𝔊', 'H': 'ℌ', 'I': 'ℑ', 'J': '𝔍', 'K': '𝔎', 'L': '𝔏', 'M': '𝔐', 'N': '𝔑', 'O': '𝔒', 'P': '𝔓', 'Q': '𝔔', 'R': 'ℜ', 'S': '𝔖', 'T': '𝔗', 'U': '𝔘', 'V': '𝔙', 'W': '𝔚', 'X': '𝔛', 'Y': '𝔜', 'Z': 'ℨ'
+    };
+    return frakturMap[char] || char;
+  }),
+  wave: (text: string) => text.replace(/[a-zA-Z0-9]/g, char => {
+    return char + '̃';
+  }),
+  cute: (text: string) => text.replace(/[a-zA-Z]/g, char => {
+    const cuteMap: { [key: string]: string } = {
+      'a': 'α', 'b': 'в', 'c': 'ς', 'd': '∂', 'e': 'є', 'f': 'ƒ', 'g': 'g', 'h': 'н', 'i': 'ι', 'j': 'נ', 'k': 'к', 'l': 'ℓ', 'm': 'м', 'n': 'η', 'o': 'σ', 'p': 'ρ', 'q': 'q', 'r': 'я', 's': 'ѕ', 't': 'т', 'u': 'υ', 'v': 'ν', 'w': 'ω', 'x': 'χ', 'y': 'у', 'z': 'z',
+      'A': 'Α', 'B': 'Β', 'C': 'Ƈ', 'D': 'Ð', 'E': 'Є', 'F': 'Ƒ', 'G': 'G', 'H': 'Ħ', 'I': 'Ɨ', 'J': 'J', 'K': 'Ҝ', 'L': 'Ł', 'M': 'M', 'N': 'Ň', 'O': 'Ø', 'P': 'P', 'Q': 'Q', 'R': 'R', 'S': 'Ş', 'T': 'Ŧ', 'U': 'Ữ', 'V': 'V', 'W': 'W', 'X': 'Ж', 'Y': 'Ұ', 'Z': 'Z'
+    };
+    return cuteMap[char] || char;
+  }),
+  dots: (text: string) => text.replace(/[a-zA-Z0-9]/g, char => {
+    return char + '̇';
   })
 };
 
@@ -88,7 +159,17 @@ const baseFontStyles = [
 const newFontStyles = [
   { key: 'circled', name: 'Circled', preview: 'Ⓗⓔⓛⓛⓞ Ⓦⓞⓡⓛⓓ' },
   { key: 'squared', name: 'Squared', preview: '🅷🅴🅻🅻🅾 🆆🅾🆁🅻🅳' },
-  { key: 'underlined', name: 'Underlined', preview: 'H̲e̲l̲l̲o̲ W̲o̲r̲l̲d̲' }
+  { key: 'underlined', name: 'Underlined', preview: 'H̲e̲l̲l̲o̲ W̲o̲r̲l̲d̲' },
+  { key: 'double', name: 'Double Struck', preview: 'ℍ𝕖𝕝𝕝𝕠 𝕎𝕠𝕣𝕝𝕕' },
+  { key: 'monospace', name: 'Monospace', preview: '𝙷𝚎𝚕𝚕𝚘 𝚆𝚘𝚛𝚕𝚍' },
+  { key: 'strikethrough', name: 'Strikethrough', preview: 'H̶e̶l̶l̶o̶ W̶o̶r̶l̶d̶' },
+  { key: 'bubble', name: 'Bubble', preview: 'Ⓗⓔⓛⓛⓞ Ⓦⓞⓡⓛⓓ' },
+  { key: 'reverse', name: 'Reverse', preview: 'ɥǝllo ʍoɹlp' },
+  { key: 'mirror', name: 'Mirror', preview: 'ʜɘllo woɿlb' },
+  { key: 'negative', name: 'Negative', preview: '🅷🅴🅻🅻🅾 🆆🅾🆁🅻🅳' },
+  { key: 'fraktur', name: 'Fraktur', preview: 'ℌ𝔢𝔩𝔩𝔬 𝔚𝔬𝔯𝔩𝔡' },
+  { key: 'wave', name: 'Wave', preview: 'H̃ẽl̃l̃õ W̃õr̃l̃d̃' },
+  { key: 'cute', name: 'Cute', preview: 'нєℓℓσ ωσяℓ∂' }
 ];
 
 export const FontSelector: React.FC<FontSelectorProps> = ({
@@ -114,9 +195,9 @@ export const FontSelector: React.FC<FontSelectorProps> = ({
     // Simulate API call delay
     await new Promise(resolve => setTimeout(resolve, 1500));
     
-    // Randomly select 3 new font styles to replace the last 3 existing ones
+    // Randomly select 6 new font styles to replace the last 3 existing ones + add 3 more
     const shuffledNewFonts = [...newFontStyles].sort(() => Math.random() - 0.5);
-    const selectedNewFonts = shuffledNewFonts.slice(0, 3);
+    const selectedNewFonts = shuffledNewFonts.slice(0, 6);
     
     // Keep the first 3 base fonts and replace the others with new ones
     const updatedFontStyles = [
