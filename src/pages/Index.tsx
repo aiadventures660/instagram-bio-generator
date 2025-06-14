@@ -9,6 +9,7 @@ import { TemplateSelector } from "@/components/TemplateSelector";
 import { BioPreview } from "@/components/BioPreview";
 import { AIBioGenerator } from "@/components/AIBioGenerator";
 import { TubelightNavbar } from "@/components/TubelightNavbar";
+import { Header } from "@/components/Header";
 import SEOBlog from "@/components/SEOBlog";
 import Footer from "@/components/ui/footer";
 
@@ -113,6 +114,9 @@ const Index = () => {
 
   return (
     <div className={`min-h-screen transition-all duration-300 ${darkMode ? 'dark bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900' : 'bg-gradient-to-br from-slate-50 via-purple-50/30 to-pink-50/30'}`}>
+      {/* Header */}
+      <Header />
+      
       <div className="container mx-auto px-3 lg:px-4 py-4 lg:py-8 max-w-7xl">
         {/* Header */}
         <HomeHeader darkMode={darkMode} onToggleDarkMode={() => setDarkMode(!darkMode)} />
