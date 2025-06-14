@@ -1,25 +1,20 @@
-
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
 import { Edit3 } from 'lucide-react';
-
 interface BioInputSectionProps {
   bioText: string;
   setBioText: (text: string) => void;
   characterLimit: number;
 }
-
-export const BioInputSection: React.FC<BioInputSectionProps> = ({ 
-  bioText, 
-  setBioText, 
-  characterLimit 
+export const BioInputSection: React.FC<BioInputSectionProps> = ({
+  bioText,
+  setBioText,
+  characterLimit
 }) => {
   const charactersLeft = characterLimit - bioText.length;
-
-  return (
-    <Card className="shadow-lg border-2 border-green-200 dark:border-green-600 bg-gradient-to-br from-white via-green-50/30 to-emerald-50/30 dark:from-gray-800 dark:via-gray-800/50 dark:to-gray-700/50 backdrop-blur-sm relative overflow-hidden">
+  return <Card className="shadow-lg border-2 border-green-200 dark:border-green-600 bg-gradient-to-br from-white via-green-50/30 to-emerald-50/30 dark:from-gray-800 dark:via-gray-800/50 dark:to-gray-700/50 backdrop-blur-sm relative overflow-hidden">
       {/* Pulsing highlight effect */}
       <div className="absolute inset-0 bg-gradient-to-r from-green-400/10 via-emerald-400/10 to-green-400/10 animate-pulse"></div>
       
@@ -49,34 +44,22 @@ export const BioInputSection: React.FC<BioInputSectionProps> = ({
               </p>
             </div>
           </div>
-          <Badge 
-            variant={charactersLeft < 0 ? "destructive" : charactersLeft < 20 ? "secondary" : "default"} 
-            className="text-sm px-3 py-1"
-          >
+          <Badge variant={charactersLeft < 0 ? "destructive" : charactersLeft < 20 ? "secondary" : "default"} className="text-sm px-3 py-1 rounded-none">
             {charactersLeft} chars left
           </Badge>
         </CardTitle>
       </CardHeader>
       <CardContent className="pt-6 relative z-10">
         <div className="relative">
-          <Textarea 
-            value={bioText} 
-            onChange={e => setBioText(e.target.value)} 
-            placeholder="✨ Type your bio here, or use AI generation and templates above to get started! ✨
+          <Textarea value={bioText} onChange={e => setBioText(e.target.value)} placeholder="✨ Type your bio here, or use AI generation and templates above to get started! ✨
 
 Use line breaks and emojis to make it pop! 
-Try: Your Name | Your Passion | Your Goal" 
-            className="min-h-32 resize-none border-green-200 dark:border-green-600 focus:border-green-500 dark:focus:border-green-400 text-base leading-relaxed bg-white/50 dark:bg-gray-900/50 backdrop-blur-sm" 
-            maxLength={characterLimit + 50} 
-          />
+Try: Your Name | Your Passion | Your Goal" className="min-h-32 resize-none border-green-200 dark:border-green-600 focus:border-green-500 dark:focus:border-green-400 text-base leading-relaxed bg-white/50 dark:bg-gray-900/50 backdrop-blur-sm" maxLength={characterLimit + 50} />
           {/* Floating helper text */}
-          {!bioText && (
-            <div className="absolute top-2 right-2 bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-300 text-xs px-2 py-1 rounded-lg animate-pulse">
+          {!bioText && <div className="absolute top-2 right-2 bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-300 text-xs px-2 py-1 rounded-lg animate-pulse">
               👆 Click to customize!
-            </div>
-          )}
+            </div>}
         </div>
       </CardContent>
-    </Card>
-  );
+    </Card>;
 };
