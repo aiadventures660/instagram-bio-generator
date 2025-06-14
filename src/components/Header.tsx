@@ -1,6 +1,8 @@
+
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Home, Mail, Info, Shield, FileText } from 'lucide-react';
+import { Home, Mail, Info, Shield, FileText, Instagram } from 'lucide-react';
+
 export const Header: React.FC = () => {
   const navItems = [{
     path: '/',
@@ -23,12 +25,15 @@ export const Header: React.FC = () => {
     label: 'Disclaimer',
     icon: FileText
   }];
+  
   return <header className="bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-gray-200/50 dark:border-gray-700/50 sticky top-0 z-50">
       <div className="container mx-auto px-4 py-3">
         <div className="flex items-center justify-between">
           {/* Logo/Brand */}
           <Link to="/" className="flex items-center gap-2">
-            <img src="/lovable-uploads/2fce271f-d4fe-4252-9204-df99c1326733.png" alt="Bio Generator Logo" className="h-10 w-10 rounded-lg object-fill" />
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-white shadow-lg">
+              <Instagram className="h-6 w-6" />
+            </div>
             <span className="text-xl font-bold bg-gradient-to-r from-purple-600 via-pink-600 to-orange-600 bg-clip-text text-transparent">
               Bio Generator
             </span>
