@@ -1,13 +1,31 @@
 
 import React, { useState } from 'react';
-import { Flame, Sparkles, Star, Zap, Moon, Sun, ArrowLeft, Lightbulb } from 'lucide-react';
+import { Flame, Sparkles, Star, Zap, Moon, Sun, ArrowLeft, Lightbulb, Copy } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Link } from 'react-router-dom';
+import { useToast } from "@/hooks/use-toast";
 
 const CoolBioIdeas = () => {
   const [darkMode, setDarkMode] = useState(false);
+  const { toast } = useToast();
+
+  const copyToClipboard = async (bioText: string) => {
+    try {
+      await navigator.clipboard.writeText(bioText);
+      toast({
+        title: "Bio Copied! ✨",
+        description: "Bio copied to clipboard - ready to paste on Instagram!"
+      });
+    } catch (err) {
+      toast({
+        title: "Copy Failed",
+        description: "Please copy the text manually.",
+        variant: "destructive"
+      });
+    }
+  };
 
   const bioCategories = [
     {
@@ -130,13 +148,22 @@ const CoolBioIdeas = () => {
               </CardHeader>
               <CardContent className="space-y-3">
                 {category.ideas.map((idea, ideaIndex) => (
-                  <div key={ideaIndex} className="flex items-start gap-3 p-3 bg-gray-50 dark:bg-gray-900 rounded-lg">
+                  <div key={ideaIndex} className="flex items-center gap-3 p-3 bg-gray-50 dark:bg-gray-900 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
                     <Badge variant="outline" className="text-xs">
                       {ideaIndex + 1}
                     </Badge>
                     <p className="text-sm text-gray-700 dark:text-gray-300 flex-1">
                       {idea}
                     </p>
+                    <Button
+                      size="sm"
+                      variant="ghost"
+                      onClick={() => copyToClipboard(idea)}
+                      className="h-8 w-8 p-0 hover:bg-orange-100 dark:hover:bg-orange-900/20"
+                      title="Copy bio to clipboard"
+                    >
+                      <Copy className="h-3 w-3 text-orange-600" />
+                    </Button>
                   </div>
                 ))}
               </CardContent>
