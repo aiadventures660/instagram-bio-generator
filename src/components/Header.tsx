@@ -1,28 +1,34 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Home, Mail, Info, Shield, FileText } from 'lucide-react';
-
 export const Header: React.FC = () => {
-  const navItems = [
-    { path: '/', label: 'Home', icon: Home },
-    { path: '/contact-us', label: 'Contact', icon: Mail },
-    { path: '/about-us', label: 'About', icon: Info },
-    { path: '/privacy-policy', label: 'Privacy Policy', icon: Shield },
-    { path: '/disclaimer', label: 'Disclaimer', icon: FileText }
-  ];
-
-  return (
-    <header className="bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-gray-200/50 dark:border-gray-700/50 sticky top-0 z-50">
+  const navItems = [{
+    path: '/',
+    label: 'Home',
+    icon: Home
+  }, {
+    path: '/contact-us',
+    label: 'Contact',
+    icon: Mail
+  }, {
+    path: '/about-us',
+    label: 'About',
+    icon: Info
+  }, {
+    path: '/privacy-policy',
+    label: 'Privacy Policy',
+    icon: Shield
+  }, {
+    path: '/disclaimer',
+    label: 'Disclaimer',
+    icon: FileText
+  }];
+  return <header className="bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-gray-200/50 dark:border-gray-700/50 sticky top-0 z-50">
       <div className="container mx-auto px-4 py-3">
         <div className="flex items-center justify-between">
           {/* Logo/Brand */}
           <Link to="/" className="flex items-center gap-2">
-            <img 
-              src="/lovable-uploads/2fce271f-d4fe-4252-9204-df99c1326733.png" 
-              alt="Bio Generator Logo" 
-              className="h-10 w-10 rounded-lg"
-            />
+            <img src="/lovable-uploads/2fce271f-d4fe-4252-9204-df99c1326733.png" alt="Bio Generator Logo" className="h-10 w-10 rounded-lg object-fill" />
             <span className="text-xl font-bold bg-gradient-to-r from-purple-600 via-pink-600 to-orange-600 bg-clip-text text-transparent">
               Bio Generator
             </span>
@@ -30,19 +36,13 @@ export const Header: React.FC = () => {
 
           {/* Navigation */}
           <nav className="hidden md:flex items-center space-x-6">
-            {navItems.map((item) => {
-              const IconComponent = item.icon;
-              return (
-                <Link
-                  key={item.path}
-                  to={item.path}
-                  className="flex items-center gap-2 px-3 py-2 rounded-lg text-gray-600 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 hover:bg-purple-50 dark:hover:bg-purple-900/20 transition-all duration-200 text-sm font-medium"
-                >
+            {navItems.map(item => {
+            const IconComponent = item.icon;
+            return <Link key={item.path} to={item.path} className="flex items-center gap-2 px-3 py-2 rounded-lg text-gray-600 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 hover:bg-purple-50 dark:hover:bg-purple-900/20 transition-all duration-200 text-sm font-medium">
                   <IconComponent className="h-4 w-4" />
                   <span>{item.label}</span>
-                </Link>
-              );
-            })}
+                </Link>;
+          })}
           </nav>
 
           {/* Mobile menu button */}
@@ -55,6 +55,5 @@ export const Header: React.FC = () => {
           </div>
         </div>
       </div>
-    </header>
-  );
+    </header>;
 };
