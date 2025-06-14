@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Copy, Sparkles, Heart, Star, Moon, Sun, Type, Hash, Palette, Lightbulb, Wand2, Edit3 } from 'lucide-react';
 import { Button } from "@/components/ui/button";
@@ -14,17 +13,16 @@ import { AIBioGenerator } from "@/components/AIBioGenerator";
 import { TubelightNavbar } from "@/components/TubelightNavbar";
 import SEOBlog from "@/components/SEOBlog";
 import Footer from "@/components/ui/footer";
-
 const Index = () => {
   const [bioText, setBioText] = useState('');
   const [selectedFont, setSelectedFont] = useState('normal');
   const [darkMode, setDarkMode] = useState(false);
   const [activeSection, setActiveSection] = useState('ai');
-  const { toast } = useToast();
-
+  const {
+    toast
+  } = useToast();
   const characterLimit = 150;
   const charactersLeft = characterLimit - bioText.length;
-
   useEffect(() => {
     if (darkMode) {
       document.documentElement.classList.add('dark');
@@ -32,86 +30,70 @@ const Index = () => {
       document.documentElement.classList.remove('dark');
     }
   }, [darkMode]);
-
-  const navItems = [
-    {
-      id: 'ai',
-      label: 'AI Generator',
-      icon: Wand2,
-      onClick: () => setActiveSection('ai')
-    },
-    {
-      id: 'templates',
-      label: 'Templates',
-      icon: Lightbulb,
-      onClick: () => setActiveSection('templates')
-    },
-    {
-      id: 'fonts',
-      label: 'Fonts',
-      icon: Type,
-      onClick: () => setActiveSection('fonts')
-    },
-    {
-      id: 'symbols',
-      label: 'Symbols',
-      icon: Hash,
-      onClick: () => setActiveSection('symbols')
-    },
-    {
-      id: 'preview',
-      label: 'Preview',
-      icon: Palette,
-      onClick: () => setActiveSection('preview')
-    }
-  ];
-
+  const navItems = [{
+    id: 'ai',
+    label: 'AI Generator',
+    icon: Wand2,
+    onClick: () => setActiveSection('ai')
+  }, {
+    id: 'templates',
+    label: 'Templates',
+    icon: Lightbulb,
+    onClick: () => setActiveSection('templates')
+  }, {
+    id: 'fonts',
+    label: 'Fonts',
+    icon: Type,
+    onClick: () => setActiveSection('fonts')
+  }, {
+    id: 'symbols',
+    label: 'Symbols',
+    icon: Hash,
+    onClick: () => setActiveSection('symbols')
+  }, {
+    id: 'preview',
+    label: 'Preview',
+    icon: Palette,
+    onClick: () => setActiveSection('preview')
+  }];
   const copyToClipboard = async () => {
     try {
       await navigator.clipboard.writeText(bioText);
       toast({
         title: "Bio Copied! ✨",
-        description: "Your aesthetic bio is ready to paste on Instagram!",
+        description: "Your aesthetic bio is ready to paste on Instagram!"
       });
     } catch (err) {
       toast({
         title: "Copy Failed",
         description: "Please copy the text manually.",
-        variant: "destructive",
+        variant: "destructive"
       });
     }
   };
-
   const insertSymbol = (symbol: string) => {
     setBioText(prev => prev + symbol);
   };
-
   const insertTemplate = (template: string) => {
     setBioText(template);
   };
-
   const handleAIBioGenerated = (generatedBio: string) => {
     setBioText(generatedBio);
   };
-
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      element.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
     }
   };
-
   const handleNavClick = (itemId: string) => {
     setActiveSection(itemId);
     scrollToSection(itemId);
   };
-
-  return (
-    <div className={`min-h-screen transition-all duration-300 ${
-      darkMode 
-        ? 'dark bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900' 
-        : 'bg-gradient-to-br from-slate-50 via-purple-50/30 to-pink-50/30'
-    }`}>
+  return <div className={`min-h-screen transition-all duration-300 ${darkMode ? 'dark bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900' : 'bg-gradient-to-br from-slate-50 via-purple-50/30 to-pink-50/30'}`}>
       <div className="container mx-auto px-4 py-6 lg:py-8 max-w-7xl">
         {/* Header */}
         <div className="text-center mb-8 lg:mb-12">
@@ -132,23 +114,14 @@ const Index = () => {
           </p>
           
           {/* Dark Mode Toggle */}
-          <Button
-            onClick={() => setDarkMode(!darkMode)}
-            variant="outline"
-            size="sm"
-            className="mt-6 border-gray-200 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700"
-          >
+          <Button onClick={() => setDarkMode(!darkMode)} variant="outline" size="sm" className="mt-6 border-gray-200 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700">
             {darkMode ? <Sun className="h-4 w-4 mr-2" /> : <Moon className="h-4 w-4 mr-2" />}
             {darkMode ? 'Light' : 'Dark'} Mode
           </Button>
         </div>
 
         {/* Navigation */}
-        <TubelightNavbar 
-          items={navItems} 
-          activeItem={activeSection}
-          onItemClick={handleNavClick}
-        />
+        <TubelightNavbar items={navItems} activeItem={activeSection} onItemClick={handleNavClick} />
 
         <div className="grid lg:grid-cols-2 gap-6 lg:gap-8">
           {/* Left Column - AI Generator, Templates, Font Selector */}
@@ -184,12 +157,7 @@ const Index = () => {
 
             {/* Font Selector */}
             <div id="fonts">
-              <FontSelector 
-                selectedFont={selectedFont} 
-                onFontChange={setSelectedFont}
-                bioText={bioText}
-                setBioText={setBioText}
-              />
+              <FontSelector selectedFont={selectedFont} onFontChange={setSelectedFont} bioText={bioText} setBioText={setBioText} />
             </div>
           </div>
 
@@ -202,12 +170,8 @@ const Index = () => {
             
             {/* Copy Button - Moved below Instagram Preview */}
             <Card className="shadow-lg border-0 bg-gradient-to-br from-white via-orange-50/20 to-red-50/20 dark:from-gray-800 dark:via-gray-800/50 dark:to-gray-700/50 backdrop-blur-sm">
-              <CardContent className="pt-6">
-                <Button 
-                  onClick={copyToClipboard}
-                  className="w-full h-14 bg-gradient-to-r from-purple-600 via-pink-600 to-orange-500 hover:from-purple-700 hover:via-pink-700 hover:to-orange-600 text-white font-semibold text-lg shadow-xl hover:shadow-2xl transition-all duration-200"
-                  disabled={!bioText.trim()}
-                >
+              <CardContent className="pt-6 py-[13px]">
+                <Button onClick={copyToClipboard} className="w-full h-14 bg-gradient-to-r from-purple-600 via-pink-600 to-orange-500 hover:from-purple-700 hover:via-pink-700 hover:to-orange-600 text-white font-semibold text-lg shadow-xl hover:shadow-2xl transition-all duration-200" disabled={!bioText.trim()}>
                   <Copy className="h-5 w-5 mr-3" />
                   Copy Bio to Clipboard
                 </Button>
@@ -248,32 +212,21 @@ const Index = () => {
                       </p>
                     </div>
                   </div>
-                  <Badge 
-                    variant={charactersLeft < 0 ? "destructive" : charactersLeft < 20 ? "secondary" : "default"}
-                    className="text-sm px-3 py-1"
-                  >
+                  <Badge variant={charactersLeft < 0 ? "destructive" : charactersLeft < 20 ? "secondary" : "default"} className="text-sm px-3 py-1">
                     {charactersLeft} chars left
                   </Badge>
                 </CardTitle>
               </CardHeader>
               <CardContent className="pt-6 relative z-10">
                 <div className="relative">
-                  <Textarea
-                    value={bioText}
-                    onChange={(e) => setBioText(e.target.value)}
-                    placeholder="✨ Type your bio here, or use AI generation and templates above to get started! ✨
+                  <Textarea value={bioText} onChange={e => setBioText(e.target.value)} placeholder="✨ Type your bio here, or use AI generation and templates above to get started! ✨
 
 Use line breaks and emojis to make it pop! 
-Try: Your Name | Your Passion | Your Goal"
-                    className="min-h-32 resize-none border-green-200 dark:border-green-600 focus:border-green-500 dark:focus:border-green-400 text-base leading-relaxed bg-white/50 dark:bg-gray-900/50 backdrop-blur-sm"
-                    maxLength={characterLimit + 50}
-                  />
+Try: Your Name | Your Passion | Your Goal" className="min-h-32 resize-none border-green-200 dark:border-green-600 focus:border-green-500 dark:focus:border-green-400 text-base leading-relaxed bg-white/50 dark:bg-gray-900/50 backdrop-blur-sm" maxLength={characterLimit + 50} />
                   {/* Floating helper text */}
-                  {!bioText && (
-                    <div className="absolute top-2 right-2 bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-300 text-xs px-2 py-1 rounded-lg animate-pulse">
+                  {!bioText && <div className="absolute top-2 right-2 bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-300 text-xs px-2 py-1 rounded-lg animate-pulse">
                       👆 Click to customize!
-                    </div>
-                  )}
+                    </div>}
                 </div>
               </CardContent>
             </Card>
@@ -336,8 +289,6 @@ Try: Your Name | Your Passion | Your Goal"
       
       {/* Footer */}
       <Footer />
-    </div>
-  );
+    </div>;
 };
-
 export default Index;
