@@ -18,9 +18,11 @@ export const Header: React.FC = () => {
         <div className="flex items-center justify-between">
           {/* Logo/Brand */}
           <Link to="/" className="flex items-center gap-2">
-            <div className="p-2 rounded-lg bg-gradient-to-br from-purple-500 via-pink-500 to-orange-500">
-              <span className="text-white font-bold text-lg">✨</span>
-            </div>
+            <img 
+              src="/lovable-uploads/2fce271f-d4fe-4252-9204-df99c1326733.png" 
+              alt="Bio Generator Logo" 
+              className="h-10 w-10 rounded-lg"
+            />
             <span className="text-xl font-bold bg-gradient-to-r from-purple-600 via-pink-600 to-orange-600 bg-clip-text text-transparent">
               Bio Generator
             </span>
