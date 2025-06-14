@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -210,19 +211,33 @@ export const FontSelector: React.FC<FontSelectorProps> = ({
   };
 
   return (
-    <Card className="shadow-lg border-0 bg-gradient-to-br from-white via-blue-50/20 to-indigo-50/20 dark:from-gray-800 dark:via-gray-800/50 dark:to-gray-700/50 backdrop-blur-sm">
-      <CardHeader className="pb-4 border-b border-gray-100 dark:border-gray-700">
+    <Card className="shadow-lg border-2 border-blue-200 dark:border-blue-600 bg-gradient-to-br from-white via-blue-50/30 to-indigo-50/30 dark:from-gray-800 dark:via-gray-800/50 dark:to-gray-700/50 backdrop-blur-sm relative overflow-hidden">
+      {/* Pulsing highlight effect */}
+      <div className="absolute inset-0 bg-gradient-to-r from-blue-400/10 via-indigo-400/10 to-blue-400/10 animate-pulse"></div>
+      
+      {/* Spotlight indicator */}
+      <div className="absolute top-4 right-4 flex items-center gap-2 z-10">
+        <div className="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></div>
+        <span className="text-xs font-medium text-blue-600 dark:text-blue-400 animate-pulse">
+          Popular Choice!
+        </span>
+      </div>
+
+      <CardHeader className="pb-4 border-b border-blue-100 dark:border-blue-700 relative z-10">
         <CardTitle className="flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="p-2 rounded-lg bg-gradient-to-br from-blue-500 to-indigo-500">
+            <div className="p-2 rounded-lg bg-gradient-to-br from-blue-500 to-indigo-500 shadow-lg">
               <Type className="h-5 w-5 text-white" />
             </div>
             <div>
-              <h3 className="text-xl font-semibold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
+              <h3 className="text-xl font-semibold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent flex items-center gap-2">
                 Font Styles
+                <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-300 animate-bounce">
+                  Transform Text!
+                </span>
               </h3>
               <p className="text-sm text-gray-600 dark:text-gray-400 font-normal">
-                Transform your text with unique fonts
+                Transform your text with unique fonts • Make it stand out
               </p>
             </div>
           </div>
@@ -253,7 +268,7 @@ export const FontSelector: React.FC<FontSelectorProps> = ({
           </div>
         </CardTitle>
       </CardHeader>
-      <CardContent className="pt-6">
+      <CardContent className="pt-6 relative z-10">
         <div className="grid grid-cols-2 gap-3">
           {fontStyles.map(style => (
             <Button
