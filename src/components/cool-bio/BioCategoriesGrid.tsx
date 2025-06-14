@@ -5,7 +5,7 @@ import { bioCategories } from './BioCategoriesData';
 
 export const BioCategoriesGrid: React.FC = () => {
   return (
-    <div className="grid md:grid-cols-2 gap-8 mb-12">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 mb-8 lg:mb-12 px-4">
       {bioCategories.map((category, index) => (
         <BioCategoryCard
           key={index}

@@ -37,14 +37,14 @@ export const TubelightNavbar: React.FC<TubelightNavbarProps> = ({
   };
 
   return (
-    <div className="flex justify-center mb-8">
+    <div className="flex justify-center mb-6 lg:mb-8 px-2">
       <motion.nav
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="relative bg-white/80 dark:bg-gray-800/80 backdrop-blur-md border border-gray-200/50 dark:border-gray-700/50 rounded-2xl p-2 shadow-2xl"
+        className="relative bg-white/80 dark:bg-gray-800/80 backdrop-blur-md border border-gray-200/50 dark:border-gray-700/50 rounded-2xl p-1.5 lg:p-2 shadow-2xl max-w-full overflow-x-auto"
       >
-        <div className="flex items-center space-x-2">
+        <div className="flex items-center space-x-1 lg:space-x-2 min-w-max">
           {items.map((item) => {
             const IconComponent = item.icon;
             const isActive = activeItem === item.id;
@@ -56,7 +56,7 @@ export const TubelightNavbar: React.FC<TubelightNavbarProps> = ({
                 onClick={() => handleItemClick(item)}
                 onMouseEnter={() => setHoveredItem(item.id)}
                 onMouseLeave={() => setHoveredItem(null)}
-                className={`relative px-4 py-3 rounded-xl transition-all duration-300 flex items-center gap-2 font-medium text-sm ${
+                className={`relative px-2 py-2 lg:px-4 lg:py-3 rounded-xl transition-all duration-300 flex items-center gap-1 lg:gap-2 font-medium text-xs lg:text-sm whitespace-nowrap ${
                   isActive
                     ? "text-white"
                     : "text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-100"
@@ -90,20 +90,20 @@ export const TubelightNavbar: React.FC<TubelightNavbarProps> = ({
                 )}
                 
                 {/* Icon and label */}
-                <div className="relative z-10 flex items-center gap-2">
-                  <IconComponent className="h-4 w-4" />
-                  <span className="hidden sm:inline">{item.label}</span>
+                <div className="relative z-10 flex items-center gap-1 lg:gap-2">
+                  <IconComponent className="h-3 w-3 lg:h-4 lg:w-4 flex-shrink-0" />
+                  <span className="hidden sm:inline text-xs lg:text-sm">{item.label}</span>
                 </div>
                 
                 {/* Sparkle effect for active item */}
                 {isActive && (
                   <motion.div
-                    className="absolute -top-1 -right-1 text-yellow-300"
+                    className="absolute -top-0.5 -right-0.5 lg:-top-1 lg:-right-1 text-yellow-300"
                     initial={{ scale: 0, rotate: 0 }}
                     animate={{ scale: 1, rotate: 180 }}
                     transition={{ duration: 0.5 }}
                   >
-                    <Sparkles className="h-3 w-3" />
+                    <Sparkles className="h-2 w-2 lg:h-3 lg:w-3" />
                   </motion.div>
                 )}
               </motion.button>
