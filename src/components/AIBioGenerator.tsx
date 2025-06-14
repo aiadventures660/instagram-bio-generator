@@ -1,10 +1,11 @@
+
 import React, { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
-import { Sparkles, Wand2, RefreshCw, Loader2, CheckCircle } from 'lucide-react';
+import { Sparkles, Wand2, RefreshCw, Loader2, CheckCircle, Copy } from 'lucide-react';
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 
@@ -89,6 +90,22 @@ export const AIBioGenerator: React.FC<AIBioGeneratorProps> = ({ onBioGenerated }
       title: "Bio Selected! 🎉",
       description: "Your AI-generated bio has been added to the editor.",
     });
+  };
+
+  const copyBio = async (bio: string) => {
+    try {
+      await navigator.clipboard.writeText(bio);
+      toast({
+        title: "Bio Copied! ✨",
+        description: "Bio copied to clipboard successfully!",
+      });
+    } catch (err) {
+      toast({
+        title: "Copy Failed",
+        description: "Please copy the text manually.",
+        variant: "destructive",
+      });
+    }
   };
 
   return (
@@ -266,14 +283,25 @@ export const AIBioGenerator: React.FC<AIBioGeneratorProps> = ({ onBioGenerated }
                         <p className="text-sm leading-relaxed whitespace-pre-line text-gray-800 dark:text-gray-200 mb-3">
                           {bio}
                         </p>
-                        <Button
-                          size="sm"
-                          onClick={() => selectBio(bio)}
-                          className="w-full bg-gradient-to-r from-red-600 to-pink-600 hover:from-red-700 hover:to-pink-700 text-white shadow-sm"
-                        >
-                          <CheckCircle className="h-4 w-4 mr-2" />
-                          Use This Bio
-                        </Button>
+                        <div className="grid grid-cols-2 gap-2">
+                          <Button
+                            size="sm"
+                            onClick={() => selectBio(bio)}
+                            className="bg-gradient-to-r from-red-600 to-pink-600 hover:from-red-700 hover:to-pink-700 text-white shadow-sm"
+                          >
+                            <CheckCircle className="h-4 w-4 mr-2" />
+                            Use This Bio
+                          </Button>
+                          <Button
+                            size="sm"
+                            variant="outline"
+                            onClick={() => copyBio(bio)}
+                            className="border-red-200 dark:border-red-600 hover:bg-red-50 dark:hover:bg-gray-700 hover:border-red-500"
+                          >
+                            <Copy className="h-4 w-4 mr-2" />
+                            Copy Bio
+                          </Button>
+                        </div>
                       </div>
                     </div>
                   </div>
