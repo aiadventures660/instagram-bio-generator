@@ -11,6 +11,11 @@ import FunnyBios from "./pages/FunnyBios";
 import BusinessBios from "./pages/BusinessBios";
 import AIBioGeneratorPage from "./pages/AIBioGeneratorPage";
 import CoolBioIdeas from "./pages/CoolBioIdeas";
+import ContactUs from "./pages/ContactUs";
+import AboutUs from "./pages/AboutUs";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import TermsConditions from "./pages/TermsConditions";
+import Disclaimer from "./pages/Disclaimer";
 
 const queryClient = new QueryClient();
 
@@ -27,6 +32,11 @@ const App = () => (
           <Route path="/business-bios" element={<BusinessBios />} />
           <Route path="/ai-bio-generator" element={<AIBioGeneratorPage />} />
           <Route path="/cool-instagram-bio-ideas" element={<CoolBioIdeas />} />
+          <Route path="/contact-us" element={<ContactUs />} />
+          <Route path="/about-us" element={<AboutUs />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="/terms-conditions" element={<TermsConditions />} />
+          <Route path="/disclaimer" element={<Disclaimer />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

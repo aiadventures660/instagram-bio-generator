@@ -1,5 +1,8 @@
+
 import React from 'react';
 import { Brain, Facebook, Twitter, Linkedin, Github, Instagram, Mail, Phone, MapPin } from 'lucide-react';
+import { Link } from 'react-router-dom';
+
 const Footer: React.FC = () => {
   return <footer className="relative bg-gradient-to-br from-white via-gray-50 to-gray-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 pt-32 pb-12 overflow-hidden py-[43px]">
       {/* Background patterns */}
@@ -69,23 +72,37 @@ const Footer: React.FC = () => {
           </div>
 
           <div>
-            <h4 className="text-lg font-bold tracking-tight mb-6 bg-gradient-to-r from-purple-600 via-pink-600 to-indigo-600 bg-clip-text text-transparent">Contact</h4>
+            <h4 className="text-lg font-bold tracking-tight mb-6 bg-gradient-to-r from-purple-600 via-pink-600 to-indigo-600 bg-clip-text text-transparent">Company</h4>
             <ul className="space-y-4">
-              <li className="text-gray-600 dark:text-gray-300 flex items-center">
-                <MapPin className="w-5 h-5 mr-2 text-gray-400" />
-                Global Access
+              <li>
+                <Link to="/contact-us" className="text-gray-600 dark:text-gray-300 hover:text-black dark:hover:text-white transition-colors duration-300 flex items-center group">
+                  <span className="w-1.5 h-1.5 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 mr-2 opacity-0 group-hover:opacity-100 transition-opacity"></span>
+                  Contact Us
+                </Link>
               </li>
               <li>
-                <a href="mailto:support@biogenerator.com" className="text-gray-600 dark:text-gray-300 hover:text-black dark:hover:text-white transition-colors duration-300 flex items-center group">
-                  <Mail className="w-5 h-5 mr-2 text-gray-400" />
-                  support@biogenerator.com
-                </a>
+                <Link to="/about-us" className="text-gray-600 dark:text-gray-300 hover:text-black dark:hover:text-white transition-colors duration-300 flex items-center group">
+                  <span className="w-1.5 h-1.5 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 mr-2 opacity-0 group-hover:opacity-100 transition-opacity"></span>
+                  About Us
+                </Link>
               </li>
               <li>
-                <a href="#" className="text-gray-600 dark:text-gray-300 hover:text-black dark:hover:text-white transition-colors duration-300 flex items-center group">
-                  <Phone className="w-5 h-5 mr-2 text-gray-400" />
-                  24/7 Support
-                </a>
+                <Link to="/privacy-policy" className="text-gray-600 dark:text-gray-300 hover:text-black dark:hover:text-white transition-colors duration-300 flex items-center group">
+                  <span className="w-1.5 h-1.5 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 mr-2 opacity-0 group-hover:opacity-100 transition-opacity"></span>
+                  Privacy Policy
+                </Link>
+              </li>
+              <li>
+                <Link to="/terms-conditions" className="text-gray-600 dark:text-gray-300 hover:text-black dark:hover:text-white transition-colors duration-300 flex items-center group">
+                  <span className="w-1.5 h-1.5 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 mr-2 opacity-0 group-hover:opacity-100 transition-opacity"></span>
+                  Terms & Conditions
+                </Link>
+              </li>
+              <li>
+                <Link to="/disclaimer" className="text-gray-600 dark:text-gray-300 hover:text-black dark:hover:text-white transition-colors duration-300 flex items-center group">
+                  <span className="w-1.5 h-1.5 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 mr-2 opacity-0 group-hover:opacity-100 transition-opacity"></span>
+                  Disclaimer
+                </Link>
               </li>
             </ul>
           </div>
@@ -99,4 +116,5 @@ const Footer: React.FC = () => {
       </div>
     </footer>;
 };
+
 export default Footer;
