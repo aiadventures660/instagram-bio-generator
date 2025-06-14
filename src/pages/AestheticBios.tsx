@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Copy, Palette, Sparkles, Heart, Moon, Sun, ArrowLeft } from 'lucide-react';
 import { Button } from "@/components/ui/button";
@@ -6,6 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { useToast } from "@/hooks/use-toast";
 import { Link } from 'react-router-dom';
+import { GenerateNewBios } from "@/components/GenerateNewBios";
 
 const AestheticBios = () => {
   const [darkMode, setDarkMode] = useState(false);
@@ -63,6 +63,13 @@ const AestheticBios = () => {
             {darkMode ? 'Light' : 'Dark'} Mode
           </Button>
         </div>
+
+        {/* Generate New Bios Component */}
+        <GenerateNewBios 
+          bioType="aesthetic"
+          gradientColors="from-white via-purple-50/30 to-pink-50/30 dark:from-gray-800 dark:via-gray-800/50 dark:to-gray-700/50"
+          accentColor="from-purple-500 to-pink-500"
+        />
 
         {/* Aesthetic Bios Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">

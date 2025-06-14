@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Flame, Sparkles, Star, Zap, Moon, Sun, ArrowLeft, Lightbulb, Copy } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -6,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Link } from 'react-router-dom';
 import { useToast } from "@/hooks/use-toast";
+import { GenerateNewBios } from "@/components/GenerateNewBios";
 
 const CoolBioIdeas = () => {
   const [darkMode, setDarkMode] = useState(false);
@@ -126,6 +126,13 @@ const CoolBioIdeas = () => {
             {darkMode ? 'Light' : 'Dark'} Mode
           </Button>
         </div>
+
+        {/* Generate New Bios Component */}
+        <GenerateNewBios 
+          bioType="cool"
+          gradientColors="from-white via-orange-50/30 to-red-50/30 dark:from-gray-800 dark:via-gray-800/50 dark:to-gray-700/50"
+          accentColor="from-orange-500 to-red-500"
+        />
 
         {/* Bio Categories */}
         <div className="grid md:grid-cols-2 gap-8 mb-12">

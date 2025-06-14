@@ -14,15 +14,66 @@ serve(async (req) => {
   }
 
   try {
-    const { interests, profession, personality, tone, style } = await req.json();
+    const { interests, profession, personality, tone, style, bioType } = await req.json();
 
     const apiKey = Deno.env.get('GEMINI_API_KEY');
     if (!apiKey) {
       throw new Error('Gemini API key not configured');
     }
 
-    const prompt = `Create 3 Instagram bio variations for someone with these details:
-      
+    // Enhanced prompts based on bio type
+    const getBioTypeSpecificPrompt = (type: string) => {
+      switch (type) {
+        case 'aesthetic':
+          return `Create 3 aesthetic Instagram bio variations with these characteristics:
+            - Use soft, dreamy language and beautiful imagery
+            - Include aesthetic emojis like ✨ 🌙 💫 🦋 🌸 🤍 ☁️
+            - Focus on minimalist and artistic vibes
+            - Use line breaks for visual appeal
+            - Keep each bio under 150 characters
+            - Make them feel dreamy and ethereal`;
+            
+        case 'funny':
+          return `Create 3 funny Instagram bio variations with these characteristics:
+            - Use humor, wit, and clever wordplay
+            - Include fun emojis like 😂 🤪 🙃 🍕 ☕ 🎭 🤡
+            - Make them relatable and entertaining
+            - Use self-deprecating humor when appropriate
+            - Keep each bio under 150 characters
+            - Make people smile or laugh`;
+            
+        case 'business':
+          return `Create 3 professional business Instagram bio variations with these characteristics:
+            - Use professional, authoritative language
+            - Include business-focused emojis like 💼 📈 🚀 🎯 💡 ⭐
+            - Focus on value proposition and credibility
+            - Include call-to-action elements
+            - Keep each bio under 150 characters
+            - Make them convert visitors into customers`;
+            
+        case 'cool':
+          return `Create 3 cool and trendy Instagram bio variations with these characteristics:
+            - Use confident, inspiring language
+            - Include trendy emojis like 🔥 ✨ 💫 ⚡ 🌟 💎 🦋
+            - Focus on unique personality and style
+            - Make them feel current and engaging
+            - Keep each bio under 150 characters
+            - Make them stand out from the crowd`;
+            
+        default:
+          return `Create 3 Instagram bio variations`;
+      }
+    };
+
+    let prompt;
+    
+    if (bioType) {
+      // Use bio type specific prompt for page-based generations
+      prompt = getBioTypeSpecificPrompt(bioType);
+    } else {
+      // Use custom prompt for AI bio generator page
+      prompt = `Create 3 Instagram bio variations for someone with these details:
+        
 Interests: ${interests || 'Not specified'}
 Profession: ${profession || 'Not specified'}
 Personality: ${personality || 'Not specified'}
@@ -34,8 +85,10 @@ Requirements:
 - Make them unique and engaging
 - ${style && style.includes('Emojis') ? 'Include relevant emojis' : 'Minimal or no emojis'}
 - ${style && style.includes('Line Breaks') ? 'Use line breaks for visual appeal' : 'Keep compact'}
-- Each bio should feel authentic and personal
-- Return only the 3 bios, separated by "---"
+- Each bio should feel authentic and personal`;
+    }
+
+    prompt += `\n\nReturn only the 3 bios, separated by "---"
 
 Example format:
 Bio 1 text here
@@ -81,7 +134,7 @@ Bio 3 text here`;
 
     const bios = generatedText.split('---').map((bio: string) => bio.trim()).filter((bio: string) => bio.length > 0);
     
-    console.log('Successfully generated bios:', bios.length);
+    console.log('Successfully generated bios:', bios.length, 'for type:', bioType || 'custom');
 
     return new Response(JSON.stringify({ bios }), {
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
