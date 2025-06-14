@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Type, Hash, Palette, Lightbulb, Wand2 } from 'lucide-react';
+import { Type, Hash, Palette, Lightbulb, Wand2, Star } from 'lucide-react';
 import { useToast } from "@/hooks/use-toast";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { FontSelector } from "@/components/FontSelector";
 import { SymbolPicker } from "@/components/SymbolPicker";
 import { TemplateSelector } from "@/components/TemplateSelector";
@@ -56,7 +57,7 @@ const Index = () => {
       id: 'symbols',
       label: 'Symbols',
       icon: Hash,
-      onClick: () => setActiveSection('symbols')
+      onClick: () => setActiveSection('symbols')    
     },
     {
       id: 'preview',
