@@ -18,8 +18,11 @@ serve(async (req) => {
 
     const apiKey = Deno.env.get('GEMINI_API_KEY');
     if (!apiKey) {
-      throw new Error('Gemini API key not configured');
+      console.error('GEMINI_API_KEY not found in environment variables');
+      throw new Error('Gemini API key not configured. Please add GEMINI_API_KEY to your Supabase Edge Function secrets.');
     }
+    
+    console.log('Gemini API key configured:', apiKey.substring(0, 10) + '...');
 
     // Enhanced prompts based on bio type
     const getBioTypeSpecificPrompt = (type: string) => {
@@ -121,8 +124,19 @@ Bio 3 text here`;
 
     if (!response.ok) {
       const errorText = await response.text();
-      console.error('Gemini API error:', errorText);
-      throw new Error(`Gemini API error: ${response.status}`);
+      console.error('Gemini API error response:', response.status, errorText);
+      
+      if (response.status === 400) {
+        throw new Error('Invalid request to Gemini API. Please check your input parameters.');
+      } else if (response.status === 401) {
+        throw new Error('Invalid Gemini API key. Please check your GEMINI_API_KEY configuration.');
+      } else if (response.status === 403) {
+        throw new Error('Gemini API access forbidden. Please verify your API key permissions.');
+      } else if (response.status === 429) {
+        throw new Error('Gemini API rate limit exceeded. Please try again later.');
+      } else {
+        throw new Error(`Gemini API error: ${response.status} - ${errorText}`);
+      }
     }
 
     const data = await response.json();

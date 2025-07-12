@@ -4,17 +4,17 @@ import { Star, Sparkles } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 export const PopularSearchTerms: React.FC = () => {
-  const longTailKeywords = [
-    "cool Instagram bio ideas for girls",
-    "unique Instagram bio ideas 2024",
-    "creative Instagram bio ideas for boys",
-    "short Instagram bio ideas with emojis",
-    "Instagram bio ideas for business owners",
-    "aesthetic Instagram bio ideas with quotes",
-    "funny Instagram bio ideas that get followers",
-    "Instagram bio ideas for photographers",
-    "cool Instagram bio ideas for students",
-    "Instagram bio ideas for influencers"
+  const bioStyles = [
+    "Cool & trendy bios",
+    "Unique personal styles",
+    "Creative expressions",
+    "Short & memorable",
+    "Business professional",
+    "Aesthetic & artistic",
+    "Fun & engaging",
+    "Photography focused",
+    "Student lifestyle",
+    "Influencer ready"
   ];
 
   return (
@@ -26,17 +26,17 @@ export const PopularSearchTerms: React.FC = () => {
           </div>
           <div>
             <h3 className="text-xl font-semibold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
-              Popular Bio Search Terms
+              Popular Bio Styles
             </h3>
             <p className="text-sm text-gray-600 dark:text-gray-400 font-normal">
-              Trending Instagram bio ideas people are searching for
+              Different styles to inspire your Instagram bio
             </p>
           </div>
         </CardTitle>
       </CardHeader>
       <CardContent>
         <div className="grid md:grid-cols-2 gap-3">
-          {longTailKeywords.map((keyword, index) => (
+          {bioStyles.map((keyword, index) => (
             <div key={index} className="flex items-center gap-2 p-2 bg-gray-50 dark:bg-gray-900 rounded-lg">
               <Sparkles className="h-4 w-4 text-purple-500 flex-shrink-0" />
               <span className="text-sm text-gray-700 dark:text-gray-300">{keyword}</span>

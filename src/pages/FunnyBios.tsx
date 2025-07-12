@@ -101,7 +101,7 @@ const FunnyBios = () => {
           ))}
         </div>
 
-        {/* SEO Content */}
+        
         <div className="prose prose-lg max-w-none dark:prose-invert">
           <Card className="shadow-lg border-0 bg-gradient-to-br from-white via-yellow-50/20 to-orange-50/20 dark:from-gray-800 dark:via-gray-800/50 dark:to-gray-700/50">
             <CardContent className="p-8">

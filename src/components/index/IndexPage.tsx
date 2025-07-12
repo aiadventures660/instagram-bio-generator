@@ -4,7 +4,7 @@ import { Type, Hash, Palette, Lightbulb, Wand2, Star } from 'lucide-react';
 import { useToast } from "@/hooks/use-toast";
 import { TubelightNavbar } from "@/components/TubelightNavbar";
 import { Header } from "@/components/Header";
-import SEOBlog from "@/components/SEOBlog";
+
 import Footer from "@/components/ui/footer";
 import { useDarkMode } from "@/contexts/DarkModeContext";
 import { HomeHeader } from "@/components/home/HomeHeader";
@@ -85,7 +85,7 @@ export const IndexPage = () => {
         />
       </div>
       
-      <SEOBlog />
+      
       <Footer />
     </div>
   );
