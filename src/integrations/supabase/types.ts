@@ -7,291 +7,20 @@ export type Json =
   | Json[]
 
 export type Database = {
+  // Allows to automatically instanciate createClient with right options
+  // instead of createClient<Database, { PostgrestVersion: 'XX' }>(URL, KEY)
+  __InternalSupabase: {
+    PostgrestVersion: "12.2.3 (519615d)"
+  }
   public: {
     Tables: {
-      batch_extractions: {
-        Row: {
-          completed_links: number
-          created_at: string
-          failed_links: number
-          id: string
-          name: string
-          status: string
-          total_links: number
-          updated_at: string
-          user_id: string | null
-        }
-        Insert: {
-          completed_links?: number
-          created_at?: string
-          failed_links?: number
-          id?: string
-          name: string
-          status?: string
-          total_links?: number
-          updated_at?: string
-          user_id?: string | null
-        }
-        Update: {
-          completed_links?: number
-          created_at?: string
-          failed_links?: number
-          id?: string
-          name?: string
-          status?: string
-          total_links?: number
-          updated_at?: string
-          user_id?: string | null
-        }
-        Relationships: []
-      }
-      custom_foods: {
-        Row: {
-          calories_per_100g: number
-          carbs_per_100g: number | null
-          created_at: string
-          fat_per_100g: number | null
-          id: string
-          name: string
-          protein_per_100g: number | null
-          updated_at: string
-          user_id: string
-        }
-        Insert: {
-          calories_per_100g: number
-          carbs_per_100g?: number | null
-          created_at?: string
-          fat_per_100g?: number | null
-          id?: string
-          name: string
-          protein_per_100g?: number | null
-          updated_at?: string
-          user_id: string
-        }
-        Update: {
-          calories_per_100g?: number
-          carbs_per_100g?: number | null
-          created_at?: string
-          fat_per_100g?: number | null
-          id?: string
-          name?: string
-          protein_per_100g?: number | null
-          updated_at?: string
-          user_id?: string
-        }
-        Relationships: []
-      }
-      food_diary: {
-        Row: {
-          calories: number
-          carbs: number | null
-          custom_food_id: string | null
-          daily_entries_count: number | null
-          fat: number | null
-          food_name: string
-          id: string
-          is_custom_food: boolean | null
-          logged_at: string
-          meal_type: string | null
-          protein: number | null
-          user_id: string
-          weight_grams: number
-        }
-        Insert: {
-          calories: number
-          carbs?: number | null
-          custom_food_id?: string | null
-          daily_entries_count?: number | null
-          fat?: number | null
-          food_name: string
-          id?: string
-          is_custom_food?: boolean | null
-          logged_at?: string
-          meal_type?: string | null
-          protein?: number | null
-          user_id: string
-          weight_grams?: number
-        }
-        Update: {
-          calories?: number
-          carbs?: number | null
-          custom_food_id?: string | null
-          daily_entries_count?: number | null
-          fat?: number | null
-          food_name?: string
-          id?: string
-          is_custom_food?: boolean | null
-          logged_at?: string
-          meal_type?: string | null
-          protein?: number | null
-          user_id?: string
-          weight_grams?: number
-        }
-        Relationships: [
-          {
-            foreignKeyName: "food_diary_custom_food_id_fkey"
-            columns: ["custom_food_id"]
-            isOneToOne: false
-            referencedRelation: "custom_foods"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
-      onboarding_progress: {
-        Row: {
-          completed: boolean
-          created_at: string
-          id: string
-          step: number
-          updated_at: string
-          user_id: string | null
-        }
-        Insert: {
-          completed?: boolean
-          created_at?: string
-          id?: string
-          step?: number
-          updated_at?: string
-          user_id?: string | null
-        }
-        Update: {
-          completed?: boolean
-          created_at?: string
-          id?: string
-          step?: number
-          updated_at?: string
-          user_id?: string | null
-        }
-        Relationships: []
-      }
-      profiles: {
-        Row: {
-          avatar_url: string | null
-          created_at: string
-          email: string | null
-          full_name: string | null
-          id: string
-          updated_at: string
-        }
-        Insert: {
-          avatar_url?: string | null
-          created_at?: string
-          email?: string | null
-          full_name?: string | null
-          id: string
-          updated_at?: string
-        }
-        Update: {
-          avatar_url?: string | null
-          created_at?: string
-          email?: string | null
-          full_name?: string | null
-          id?: string
-          updated_at?: string
-        }
-        Relationships: []
-      }
-      subscribers: {
-        Row: {
-          created_at: string
-          email: string
-          id: string
-          stripe_customer_id: string | null
-          subscribed: boolean
-          subscription_end: string | null
-          subscription_tier: string | null
-          updated_at: string
-          user_id: string | null
-        }
-        Insert: {
-          created_at?: string
-          email: string
-          id?: string
-          stripe_customer_id?: string | null
-          subscribed?: boolean
-          subscription_end?: string | null
-          subscription_tier?: string | null
-          updated_at?: string
-          user_id?: string | null
-        }
-        Update: {
-          created_at?: string
-          email?: string
-          id?: string
-          stripe_customer_id?: string | null
-          subscribed?: boolean
-          subscription_end?: string | null
-          subscription_tier?: string | null
-          updated_at?: string
-          user_id?: string | null
-        }
-        Relationships: []
-      }
-      video_extractions: {
-        Row: {
-          batch_id: string | null
-          created_at: string
-          direct_video_url: string | null
-          duration: number | null
-          error_message: string | null
-          file_size: number | null
-          id: string
-          status: string
-          terabox_url: string
-          thumbnail_url: string | null
-          title: string | null
-          updated_at: string
-          user_id: string | null
-        }
-        Insert: {
-          batch_id?: string | null
-          created_at?: string
-          direct_video_url?: string | null
-          duration?: number | null
-          error_message?: string | null
-          file_size?: number | null
-          id?: string
-          status?: string
-          terabox_url: string
-          thumbnail_url?: string | null
-          title?: string | null
-          updated_at?: string
-          user_id?: string | null
-        }
-        Update: {
-          batch_id?: string | null
-          created_at?: string
-          direct_video_url?: string | null
-          duration?: number | null
-          error_message?: string | null
-          file_size?: number | null
-          id?: string
-          status?: string
-          terabox_url?: string
-          thumbnail_url?: string | null
-          title?: string | null
-          updated_at?: string
-          user_id?: string | null
-        }
-        Relationships: [
-          {
-            foreignKeyName: "video_extractions_batch_id_fkey"
-            columns: ["batch_id"]
-            isOneToOne: false
-            referencedRelation: "batch_extractions"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
+      [_ in never]: never
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      reset_daily_entry_counts: {
-        Args: Record<PropertyKey, never>
-        Returns: undefined
-      }
+      [_ in never]: never
     }
     Enums: {
       [_ in never]: never
@@ -302,21 +31,25 @@ export type Database = {
   }
 }
 
-type DefaultSchema = Database[Extract<keyof Database, "public">]
+type DatabaseWithoutInternals = Omit<Database, "__InternalSupabase">
+
+type DefaultSchema = DatabaseWithoutInternals[Extract<keyof Database, "public">]
 
 export type Tables<
   DefaultSchemaTableNameOrOptions extends
     | keyof (DefaultSchema["Tables"] & DefaultSchema["Views"])
-    | { schema: keyof Database },
+    | { schema: keyof DatabaseWithoutInternals },
   TableName extends DefaultSchemaTableNameOrOptions extends {
-    schema: keyof Database
+    schema: keyof DatabaseWithoutInternals
   }
-    ? keyof (Database[DefaultSchemaTableNameOrOptions["schema"]]["Tables"] &
-        Database[DefaultSchemaTableNameOrOptions["schema"]]["Views"])
+    ? keyof (DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"] &
+        DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Views"])
     : never = never,
-> = DefaultSchemaTableNameOrOptions extends { schema: keyof Database }
-  ? (Database[DefaultSchemaTableNameOrOptions["schema"]]["Tables"] &
-      Database[DefaultSchemaTableNameOrOptions["schema"]]["Views"])[TableName] extends {
+> = DefaultSchemaTableNameOrOptions extends {
+  schema: keyof DatabaseWithoutInternals
+}
+  ? (DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"] &
+      DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Views"])[TableName] extends {
       Row: infer R
     }
     ? R
@@ -334,14 +67,16 @@ export type Tables<
 export type TablesInsert<
   DefaultSchemaTableNameOrOptions extends
     | keyof DefaultSchema["Tables"]
-    | { schema: keyof Database },
+    | { schema: keyof DatabaseWithoutInternals },
   TableName extends DefaultSchemaTableNameOrOptions extends {
-    schema: keyof Database
+    schema: keyof DatabaseWithoutInternals
   }
-    ? keyof Database[DefaultSchemaTableNameOrOptions["schema"]]["Tables"]
+    ? keyof DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"]
     : never = never,
-> = DefaultSchemaTableNameOrOptions extends { schema: keyof Database }
-  ? Database[DefaultSchemaTableNameOrOptions["schema"]]["Tables"][TableName] extends {
+> = DefaultSchemaTableNameOrOptions extends {
+  schema: keyof DatabaseWithoutInternals
+}
+  ? DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"][TableName] extends {
       Insert: infer I
     }
     ? I
@@ -357,14 +92,16 @@ export type TablesInsert<
 export type TablesUpdate<
   DefaultSchemaTableNameOrOptions extends
     | keyof DefaultSchema["Tables"]
-    | { schema: keyof Database },
+    | { schema: keyof DatabaseWithoutInternals },
   TableName extends DefaultSchemaTableNameOrOptions extends {
-    schema: keyof Database
+    schema: keyof DatabaseWithoutInternals
   }
-    ? keyof Database[DefaultSchemaTableNameOrOptions["schema"]]["Tables"]
+    ? keyof DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"]
     : never = never,
-> = DefaultSchemaTableNameOrOptions extends { schema: keyof Database }
-  ? Database[DefaultSchemaTableNameOrOptions["schema"]]["Tables"][TableName] extends {
+> = DefaultSchemaTableNameOrOptions extends {
+  schema: keyof DatabaseWithoutInternals
+}
+  ? DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"][TableName] extends {
       Update: infer U
     }
     ? U
@@ -380,14 +117,16 @@ export type TablesUpdate<
 export type Enums<
   DefaultSchemaEnumNameOrOptions extends
     | keyof DefaultSchema["Enums"]
-    | { schema: keyof Database },
+    | { schema: keyof DatabaseWithoutInternals },
   EnumName extends DefaultSchemaEnumNameOrOptions extends {
-    schema: keyof Database
+    schema: keyof DatabaseWithoutInternals
   }
-    ? keyof Database[DefaultSchemaEnumNameOrOptions["schema"]]["Enums"]
+    ? keyof DatabaseWithoutInternals[DefaultSchemaEnumNameOrOptions["schema"]]["Enums"]
     : never = never,
-> = DefaultSchemaEnumNameOrOptions extends { schema: keyof Database }
-  ? Database[DefaultSchemaEnumNameOrOptions["schema"]]["Enums"][EnumName]
+> = DefaultSchemaEnumNameOrOptions extends {
+  schema: keyof DatabaseWithoutInternals
+}
+  ? DatabaseWithoutInternals[DefaultSchemaEnumNameOrOptions["schema"]]["Enums"][EnumName]
   : DefaultSchemaEnumNameOrOptions extends keyof DefaultSchema["Enums"]
     ? DefaultSchema["Enums"][DefaultSchemaEnumNameOrOptions]
     : never
@@ -395,14 +134,16 @@ export type Enums<
 export type CompositeTypes<
   PublicCompositeTypeNameOrOptions extends
     | keyof DefaultSchema["CompositeTypes"]
-    | { schema: keyof Database },
+    | { schema: keyof DatabaseWithoutInternals },
   CompositeTypeName extends PublicCompositeTypeNameOrOptions extends {
-    schema: keyof Database
+    schema: keyof DatabaseWithoutInternals
   }
-    ? keyof Database[PublicCompositeTypeNameOrOptions["schema"]]["CompositeTypes"]
+    ? keyof DatabaseWithoutInternals[PublicCompositeTypeNameOrOptions["schema"]]["CompositeTypes"]
     : never = never,
-> = PublicCompositeTypeNameOrOptions extends { schema: keyof Database }
-  ? Database[PublicCompositeTypeNameOrOptions["schema"]]["CompositeTypes"][CompositeTypeName]
+> = PublicCompositeTypeNameOrOptions extends {
+  schema: keyof DatabaseWithoutInternals
+}
+  ? DatabaseWithoutInternals[PublicCompositeTypeNameOrOptions["schema"]]["CompositeTypes"][CompositeTypeName]
   : PublicCompositeTypeNameOrOptions extends keyof DefaultSchema["CompositeTypes"]
     ? DefaultSchema["CompositeTypes"][PublicCompositeTypeNameOrOptions]
     : never
