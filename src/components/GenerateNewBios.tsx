@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Sparkles, Wand2, RefreshCw, Loader2, Copy } from 'lucide-react';
 import { useToast } from "@/hooks/use-toast";
-import { supabase } from "@/integrations/supabase/client";
+import { bioAPIService } from "@/lib/bioAPIService";
 
 interface GenerateNewBiosProps {
   bioType: 'aesthetic' | 'funny' | 'business' | 'cool';
@@ -63,30 +63,32 @@ export const GenerateNewBios: React.FC<GenerateNewBiosProps> = ({
     try {
       const bioConfig = getBioTypePrompt(bioType);
       
-      const { data, error } = await supabase.functions.invoke('generate-bio', {
-        body: {
-          interests: `${bioType} lifestyle, social media, personal branding`,
-          profession: 'Content creator, influencer, social media enthusiast',
-          personality: bioConfig.personality,
-          tone: bioConfig.tone,
-          style: bioConfig.style,
-          bioType: bioType
-        }
+      const response = await bioAPIService.generateBios({
+        interests: `${bioType} lifestyle, social media, personal branding`,
+        profession: 'Content creator, influencer, social media enthusiast',
+        personality: bioConfig.personality,
+        tone: bioConfig.tone,
+        style: bioConfig.style,
+        bioType: bioType
       });
 
-      if (error) {
-        console.error('Function invocation error:', error);
-        throw new Error(error.message || 'Failed to generate bios');
-      }
-
-      if (data?.bios && Array.isArray(data.bios)) {
-        setGeneratedBios(data.bios);
-        toast({
-          title: "New Bios Generated! ✨",
-          description: `Created ${data.bios.length} fresh ${bioType} bio variations for you.`,
-        });
+      if (response.success && response.bios.length > 0) {
+        setGeneratedBios(response.bios);
+        
+        if (response.usingFallback) {
+          toast({
+            title: "📚 Template Bios Ready!",
+            description: `Generated ${response.bios.length} ${bioType} bios from our curated templates.`,
+            variant: "default",
+          });
+        } else {
+          toast({
+            title: "🤖 AI Bios Generated! ✨",
+            description: `Created ${response.bios.length} fresh AI-powered ${bioType} bio variations for you.`,
+          });
+        }
       } else {
-        throw new Error('Invalid response format from API');
+        throw new Error(response.error || 'No bios could be generated');
       }
     } catch (error) {
       console.error('Error generating bios:', error);

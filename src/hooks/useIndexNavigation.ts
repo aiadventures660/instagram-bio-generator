@@ -1,5 +1,5 @@
 
-import { Type, Hash, Palette, Lightbulb, Wand2 } from 'lucide-react';
+import { Type, Hash, Palette, Lightbulb, Wand2, BarChart3 } from 'lucide-react';
 
 export const useIndexNavigation = (setActiveSection: (section: string) => void) => {
   const navItems = [
@@ -8,6 +8,12 @@ export const useIndexNavigation = (setActiveSection: (section: string) => void) 
       label: 'AI Generator',
       icon: Wand2,
       onClick: () => setActiveSection('ai')
+    },
+    {
+      id: 'analyzer',
+      label: 'Bio Analyzer',
+      icon: BarChart3,
+      onClick: () => setActiveSection('analyzer')
     },
     {
       id: 'templates',

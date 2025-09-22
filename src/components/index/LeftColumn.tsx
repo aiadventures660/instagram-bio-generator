@@ -5,6 +5,7 @@ import { Star } from 'lucide-react';
 import { AIBioGenerator } from "@/components/AIBioGenerator";
 import { TemplateSelector } from "@/components/TemplateSelector";
 import { FontSelector } from "@/components/FontSelector";
+import { BioAnalyzer } from "@/components/BioAnalyzer";
 
 interface LeftColumnProps {
   insertTemplate: (template: string) => void;
@@ -28,6 +29,11 @@ export const LeftColumn: React.FC<LeftColumnProps> = ({
       {/* AI Bio Generator */}
       <div id="ai">
         <AIBioGenerator onBioGenerated={handleAIBioGenerated} />
+      </div>
+
+      {/* Bio Analyzer */}
+      <div id="analyzer">
+        <BioAnalyzer />
       </div>
       
       {/* Template Selector */}

@@ -18,6 +18,14 @@ export const Header: React.FC = () => {
     label: 'Home',
     icon: Home
   }, {
+    path: '/instagram-bio-guide',
+    label: 'Bio Guide',
+    icon: FileText
+  }, {
+    path: '/bio-faq',
+    label: 'FAQ',
+    icon: Info
+  }, {
     path: '/contact-us',
     label: 'Contact',
     icon: Mail

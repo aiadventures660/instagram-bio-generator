@@ -7,7 +7,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
 import { Sparkles, Wand2, RefreshCw, Loader2, CheckCircle, Copy } from 'lucide-react';
 import { useToast } from "@/hooks/use-toast";
-import { supabase } from "@/integrations/supabase/client";
+import { bioAPIService } from "@/lib/bioAPIService";
+import { FallbackInfo } from "./FallbackInfo";
 
 interface AIBioGeneratorProps {
   onBioGenerated: (bio: string) => void;
@@ -46,31 +47,33 @@ export const AIBioGenerator: React.FC<AIBioGeneratorProps> = ({ onBioGenerated }
     setIsGenerating(true);
     
     try {
-      console.log('Calling generate-bio function...');
+      console.log('Generating bios using API service...');
       
-      const { data, error } = await supabase.functions.invoke('generate-bio', {
-        body: {
-          interests: interests.trim(),
-          profession: profession.trim(),
-          personality: personality.trim(),
-          tone: selectedTone,
-          style: selectedStyle
-        }
+      const response = await bioAPIService.generateBios({
+        interests: interests.trim(),
+        profession: profession.trim(),
+        personality: personality.trim(),
+        tone: selectedTone,
+        style: selectedStyle
       });
 
-      if (error) {
-        console.error('Function invocation error:', error);
-        throw new Error(error.message || 'Failed to generate bio');
-      }
-
-      if (data?.bios && Array.isArray(data.bios)) {
-        setGeneratedBios(data.bios);
-        toast({
-          title: "Bios Generated! ✨",
-          description: `Created ${data.bios.length} unique bio variations for you.`,
-        });
+      if (response.success && response.bios.length > 0) {
+        setGeneratedBios(response.bios);
+        
+        if (response.usingFallback) {
+          toast({
+            title: "📚 Using Built-in Templates",
+            description: response.fallbackReason || "Generated bios using our curated template collection.",
+            variant: "default",
+          });
+        } else {
+          toast({
+            title: "🤖 AI Bios Generated! ✨",
+            description: `Created ${response.bios.length} unique AI-powered bio variations for you.`,
+          });
+        }
       } else {
-        throw new Error('Invalid response format from API');
+        throw new Error(response.error || 'No bios could be generated');
       }
     } catch (error) {
       console.error('Error generating bio:', error);
@@ -109,8 +112,11 @@ export const AIBioGenerator: React.FC<AIBioGeneratorProps> = ({ onBioGenerated }
   };
 
   return (
-    <div className="relative">
-      {/* Pulsing border container */}
+    <div className="space-y-4">
+      <FallbackInfo />
+      
+      <div className="relative">
+        {/* Pulsing border container */}
       <div className="absolute inset-0 bg-gradient-to-r from-red-500 via-pink-500 to-red-500 rounded-lg animate-pulse opacity-75"></div>
       <div className="absolute inset-0.5 bg-gradient-to-br from-white via-red-50/30 to-pink-50/30 dark:from-gray-800 dark:via-gray-800/50 dark:to-gray-700/50 rounded-lg"></div>
       
@@ -311,6 +317,7 @@ export const AIBioGenerator: React.FC<AIBioGeneratorProps> = ({ onBioGenerated }
           )}
         </CardContent>
       </Card>
+    </div>
     </div>
   );
 };

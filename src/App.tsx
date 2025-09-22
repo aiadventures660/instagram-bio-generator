@@ -18,6 +18,8 @@ import AboutUs from "./pages/AboutUs";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsConditions from "./pages/TermsConditions";
 import Disclaimer from "./pages/Disclaimer";
+import InstagramBioGuide from "./pages/InstagramBioGuide";
+import BioFAQ from "./pages/BioFAQ";
 
 const queryClient = new QueryClient();
 
@@ -38,6 +40,8 @@ const App = () => (
             <Route path="/cool-instagram-bio-ideas" element={<CoolBioIdeas />} />
             <Route path="/contact-us" element={<ContactUs />} />
             <Route path="/about-us" element={<AboutUs />} />
+            <Route path="/instagram-bio-guide" element={<InstagramBioGuide />} />
+            <Route path="/bio-faq" element={<BioFAQ />} />
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/terms-conditions" element={<TermsConditions />} />
             <Route path="/disclaimer" element={<Disclaimer />} />

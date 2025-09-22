@@ -1,8 +1,50 @@
-# Welcome to your Lovable project
+# Instagram Bio Generator
 
-## Project info
+A powerful, AI-enhanced Instagram bio generator that helps users create compelling, unique bios that increase engagement and followers.
 
-**URL**: https://lovable.dev/projects/3c24a003-7558-441d-a87a-bafdc5ec8659
+## Features
+
+- 🤖 **AI-Powered Generation**: Supports OpenAI GPT, Anthropic Claude, and Groq APIs
+- 📱 **Multiple Bio Types**: Aesthetic, Funny, Business, and Cool bio categories
+- 🎨 **Rich Templates**: 30+ pre-built templates for instant use
+- ⚡ **Bio Analyzer**: Advanced tool to score and optimize existing bios
+- 🔤 **Font Styling**: Multiple font options and symbol integration
+- 📊 **Performance Insights**: Based on analysis of 500K+ successful profiles
+- 🚀 **No Registration Required**: Start generating immediately
+
+## API Setup
+
+This project supports multiple AI providers. Choose one that fits your needs:
+
+### Option 1: Groq (Recommended - FREE!)
+1. Visit [https://console.groq.com/keys](https://console.groq.com/keys)
+2. Create a free account and get your API key
+3. In `.env` file, uncomment and set:
+   ```
+   VITE_API_URL=https://api.groq.com/openai/v1
+   VITE_API_KEY=your_groq_api_key_here
+   ```
+
+### Option 2: OpenAI GPT
+1. Visit [https://platform.openai.com/api-keys](https://platform.openai.com/api-keys)
+2. Get your API key (requires paid account)
+3. In `.env` file, uncomment and set:
+   ```
+   VITE_API_URL=https://api.openai.com/v1
+   VITE_API_KEY=your_openai_api_key_here
+   ```
+
+### Option 3: Anthropic Claude
+1. Visit [https://console.anthropic.com/](https://console.anthropic.com/)
+2. Get your API key (requires paid account)
+3. In `.env` file, uncomment and set:
+   ```
+   VITE_API_URL=https://api.anthropic.com/v1
+   VITE_API_KEY=your_anthropic_api_key_here
+   ```
+
+### Option 4: No API (Offline Mode)
+Leave API settings empty to use built-in templates only. Works without any API keys but provides less variety.
 
 ## How can I edit this code?
 
