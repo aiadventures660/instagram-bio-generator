@@ -5,10 +5,7 @@ Successfully removed all Supabase dependencies and integrated Google Gemini API 
 
 ## Changes Made
 
-### 1. Environment Configuration
-- Updated `.env` file to use Google Gemini API
-- Set VITE_API_URL=https://generativelanguage.googleapis.com/v1beta
-- Set VITE_API_KEY=AIzaSyCGwn-J-hWeWx2O_q7mo8ml5WN7HsLhY1A
+
 
 ### 2. API Service Implementation
 - **bioAPIService.ts**: Enhanced existing service to support Gemini API
